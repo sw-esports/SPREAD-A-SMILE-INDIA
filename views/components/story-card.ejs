@@ -1,0 +1,68 @@
+<!-- Story Card Component -->
+<div class="card story-card" data-aos="fade-up" data-aos-delay="<%= delay || 0 %>">
+    <div class="story-header">
+        <div class="story-avatar">
+            <picture>
+                <source srcset="<%= avatar %>.webp" type="image/webp">
+                <img src="<%= avatar %>" alt="<%= name %>" loading="lazy" class="optimized-img">
+            </picture>
+        </div>
+        <div class="story-meta">
+            <h4 class="story-name"><%= name %></h4>
+            <span class="story-age"><%= age %> years old</span>
+            <div class="story-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span><%= location %></span>
+            </div>
+        </div>
+        <div class="story-status <%= status.type %>">
+            <i class="fas fa-<%= status.icon %>"></i>
+            <span><%= status.text %></span>
+        </div>
+    </div>
+    
+    <div class="story-content">
+        <blockquote class="story-quote">
+            "<%= quote %>"
+        </blockquote>
+        
+        <div class="story-journey">
+            <div class="journey-item before">
+                <span class="journey-label">Before</span>
+                <p><%= journey.before %></p>
+            </div>
+            <div class="journey-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="journey-item after">
+                <span class="journey-label">Today</span>
+                <p><%= journey.after %></p>
+            </div>
+        </div>
+        
+        <% if (typeof achievements !== 'undefined') { %>
+            <div class="story-achievements">
+                <h5>Achievements</h5>
+                <div class="achievement-list">
+                    <% achievements.forEach(achievement => { %>
+                        <span class="achievement-badge">
+                            <i class="fas fa-<%= achievement.icon %>"></i>
+                            <%= achievement.text %>
+                        </span>
+                    <% }) %>
+                </div>
+            </div>
+        <% } %>
+    </div>
+    
+    <div class="story-footer">
+        <span class="story-date">
+            <i class="fas fa-calendar"></i>
+            <%= date %>
+        </span>
+        <a href="<%= readMoreLink %>" class="btn btn-text">
+            <span>Read Full Story</span>
+            <i class="fas fa-external-link-alt"></i>
+        </a>
+    </div>
+</div>
