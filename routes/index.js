@@ -5,7 +5,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.render('index', { 
     title: 'Home - Spread A Smile India',
-    page: 'home'
+    page: 'home',
+    user: req.user || null,
+    theme: req.session.theme || 'light'
   });
 });
 

@@ -23,6 +23,13 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/components.css">
     <link rel="stylesheet" href="/css/navbar-enhanced.css">
+    <% if (page === 'home') { %>
+    <link rel="stylesheet" href="/css/homepage.css">
+    <% } %>
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <!-- Theme Initialization Script (runs before page load to prevent flash) -->
     <script>

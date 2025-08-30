@@ -49,6 +49,7 @@ const getInvolvedRoutes = require('./routes/get-involved');
 const mediaRoutes = require('./routes/media');
 const contactRoutes = require('./routes/contact');
 const footerPagesRoutes = require('./routes/footer-pages');
+const apiRoutes = require('./routes/api');
 
 // Use routes
 app.use('/', indexRoutes);
@@ -59,6 +60,7 @@ app.use('/get-involved', getInvolvedRoutes);
 app.use('/media', mediaRoutes);
 app.use('/contact', contactRoutes);
 app.use('/', footerPagesRoutes); // FAQ, legal, etc.
+app.use('/api', apiRoutes); // API endpoints
 
 // Theme switching API route
 app.post('/api/toggle-theme', (req, res) => {

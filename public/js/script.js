@@ -472,7 +472,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Scroll to top functionality
 function scrollToTop() {
     gsap.to(window, {
-        duration: 1,
+        duration: 0.6,
         scrollTo: 0,
         ease: "power2.inOut"
     });
@@ -482,7 +482,7 @@ function scrollToTop() {
 function handleScrollToTop() {
     const scrollBtn = document.querySelector('.scroll-to-top');
     if (scrollBtn) {
-        if (window.pageYOffset > 300) {
+        if (window.pageYOffset > 150) {
             scrollBtn.classList.add('visible');
         } else {
             scrollBtn.classList.remove('visible');

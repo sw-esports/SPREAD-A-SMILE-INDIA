@@ -31,7 +31,7 @@
             <div class="footer-section" data-aos="fade-up" data-aos-delay="300">
                 <h3><i class="fas fa-share-alt"></i> Follow Us</h3>
                 <div class="social-links">
-                    <a href="#" target="_blank" class="social-link facebook">
+                    <a href="https://www.facebook.com/SpreadASmileIndia/" target="_blank" class="social-link facebook">
                         <i class="fab fa-facebook-f"></i>
                         <span>Facebook</span>
                     </a>
@@ -43,7 +43,7 @@
                         <i class="fab fa-linkedin-in"></i>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="#" target="_blank" class="social-link youtube">
+                    <a href="https://www.youtube.com/watch?v=_XuH6OPxoas&ab_channel=SpreadASmileIndia" target="_blank" class="social-link youtube">
                         <i class="fab fa-youtube"></i>
                         <span>YouTube</span>
                     </a>
@@ -87,5 +87,8 @@
     
     <!-- Scripts -->
     <script src="/js/script.js"></script>
+    <% if (typeof page !== 'undefined' && page === 'home') { %>
+    <script src="/js/homepage.js"></script>
+    <% } %>
 </body>
 </html>
