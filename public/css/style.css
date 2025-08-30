@@ -589,93 +589,56 @@ h2 {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1.25rem;
   text-decoration: none;
   border-radius: 50px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease;
   font-weight: 500;
   font-size: 0.9rem;
-  position: relative;
-  overflow: hidden;
   min-width: 130px;
   justify-content: center;
-  border: 2px solid;
-  background: var(--bg-primary);
-}
-
-.social-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  transition: left 0.5s ease;
-  border-radius: 50px;
-}
-
-.social-link:hover::before {
-  left: 0;
-}
-
-.social-link i {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
-  position: relative;
-  z-index: 2;
-}
-
-.social-link span {
-  position: relative;
-  z-index: 2;
-  transition: color 0.3s ease;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 .social-link:hover {
-  transform: translateY(-3px);
-  color: white !important;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.social-link i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
 }
 
 .social-link:hover i {
-  transform: scale(1.2) rotate(5deg);
+  transform: scale(1.1);
 }
 
-/* Platform-specific styling */
-.social-link.facebook {
-  color: #1877f2;
+/* Platform-specific hover colors */
+.social-link.facebook:hover {
+  background: #1877f2;
+  color: white;
   border-color: #1877f2;
 }
 
-.social-link.facebook::before {
-  background: #1877f2;
-}
-
-.social-link.instagram {
-  color: #e4405f;
+.social-link.instagram:hover {
+  background: #e4405f;
+  color: white;
   border-color: #e4405f;
 }
 
-.social-link.instagram::before {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.social-link.linkedin {
-  color: #0077b5;
+.social-link.linkedin:hover {
+  background: #0077b5;
+  color: white;
   border-color: #0077b5;
 }
 
-.social-link.linkedin::before {
-  background: #0077b5;
-}
-
-.social-link.youtube {
-  color: #ff0000;
-  border-color: #ff0000;
-}
-
-.social-link.youtube::before {
+.social-link.youtube:hover {
   background: #ff0000;
+  color: white;
+  border-color: #ff0000;
 }
 
 .newsletter-form {

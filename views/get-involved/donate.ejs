@@ -1,0 +1,668 @@
+<%- include('../partials/header') %>
+
+<main class="main-content">
+    <!-- Donate Hero Section -->
+    <section class="donate-hero-section" data-aos="fade-up">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Make a Donation</h1>
+                        <p class="hero-subtitle">Transform a child's life with your generosity</p>
+                        <p class="hero-description">
+                            Your donation directly impacts the lives of street children, providing them with education, 
+                            healthcare, nutrition, and the opportunity for a better future. Every rupee counts.
+                        </p>
+                        <div class="hero-impact">
+                            <div class="impact-stat">
+                                <span class="impact-number">₹500</span>
+                                <span class="impact-label">Feeds a child for a month</span>
+                            </div>
+                            <div class="impact-stat">
+                                <span class="impact-number">₹2000</span>
+                                <span class="impact-label">School kit & uniform</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="hero-image" data-aos="fade-left">
+                        <img src="/src/images/donate/donate-hero.jpg" alt="Children receiving education" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Donate Section -->
+    <section class="quick-donate-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Make an Immediate Impact</h2>
+                <p class="section-description">Choose a preset amount or enter your own</p>
+            </div>
+            
+            <div class="donate-form-container">
+                <form class="donation-form" action="/api/donation" method="POST">
+                    <div class="amount-selection">
+                        <h3>Select Donation Amount</h3>
+                        <div class="amount-options">
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="500">
+                                <span class="amount-card">
+                                    <span class="amount-value">₹500</span>
+                                    <span class="amount-impact">Feed a child for 1 month</span>
+                                </span>
+                            </label>
+                            
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="1000">
+                                <span class="amount-card">
+                                    <span class="amount-value">₹1,000</span>
+                                    <span class="amount-impact">Educational supplies for 1 child</span>
+                                </span>
+                            </label>
+                            
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="2000">
+                                <span class="amount-card">
+                                    <span class="amount-value">₹2,000</span>
+                                    <span class="amount-impact">School kit & uniform</span>
+                                </span>
+                            </label>
+                            
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="5000">
+                                <span class="amount-card">
+                                    <span class="amount-value">₹5,000</span>
+                                    <span class="amount-impact">Health checkup for 10 children</span>
+                                </span>
+                            </label>
+                            
+                            <label class="amount-option">
+                                <input type="radio" name="amount" value="10000">
+                                <span class="amount-card">
+                                    <span class="amount-value">₹10,000</span>
+                                    <span class="amount-impact">Support a child for 3 months</span>
+                                </span>
+                            </label>
+                            
+                            <label class="amount-option custom-amount">
+                                <input type="radio" name="amount" value="custom">
+                                <span class="amount-card">
+                                    <span class="amount-value">Custom</span>
+                                    <span class="amount-impact">Enter your amount</span>
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <div class="custom-amount-input" style="display: none;">
+                            <label for="customAmount">Enter Custom Amount (₹)</label>
+                            <input type="number" id="customAmount" name="customAmount" min="100" placeholder="Enter amount">
+                        </div>
+                    </div>
+                    
+                    <div class="donation-type">
+                        <h3>Donation Type</h3>
+                        <div class="type-options">
+                            <label class="type-option">
+                                <input type="radio" name="donationType" value="one-time" checked>
+                                <span class="type-card">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                    <span class="type-label">One-time Donation</span>
+                                </span>
+                            </label>
+                            
+                            <label class="type-option">
+                                <input type="radio" name="donationType" value="monthly">
+                                <span class="type-card">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span class="type-label">Monthly Donation</span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="donation-purpose">
+                        <h3>Where would you like your donation to go?</h3>
+                        <select name="purpose" id="purpose">
+                            <option value="general">General Fund - Where needed most</option>
+                            <option value="education">Education Program</option>
+                            <option value="health">Health & Wellness</option>
+                            <option value="nutrition">Food & Nutrition</option>
+                            <option value="vocational">Vocational Training</option>
+                            <option value="infrastructure">Infrastructure Development</option>
+                        </select>
+                    </div>
+                    
+                    <div class="donor-information">
+                        <h3>Your Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donorName">Full Name *</label>
+                                <input type="text" id="donorName" name="donorName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="donorEmail">Email Address *</label>
+                                <input type="email" id="donorEmail" name="donorEmail" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="donorPhone">Phone Number</label>
+                                <input type="tel" id="donorPhone" name="donorPhone">
+                            </div>
+                            <div class="form-group">
+                                <label for="donorPan">PAN Number (for tax receipt)</label>
+                                <input type="text" id="donorPan" name="donorPan" placeholder="ABCDE1234F">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="donorAddress">Address (for tax receipt)</label>
+                            <textarea id="donorAddress" name="donorAddress" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="newsletter" checked>
+                                <span class="checkmark"></span>
+                                Send me updates about how my donation is making a difference
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="anonymous">
+                                <span class="checkmark"></span>
+                                I prefer to remain anonymous
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="donation-summary">
+                        <div class="summary-content">
+                            <h3>Donation Summary</h3>
+                            <div class="summary-item">
+                                <span>Amount:</span>
+                                <span class="summary-amount">₹0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Type:</span>
+                                <span class="summary-type">One-time</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Purpose:</span>
+                                <span class="summary-purpose">General Fund</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-heart"></i>
+                            Proceed to Payment
+                        </button>
+                        <p class="security-note">
+                            <i class="fas fa-shield-alt"></i>
+                            Secure SSL encrypted payment. Your information is safe with us.
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact of Donations Section -->
+    <section class="donation-impact-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Your Donation Impact</h2>
+                <p class="section-description">See exactly how your contribution transforms lives</p>
+            </div>
+            
+            <div class="impact-grid">
+                <div class="impact-card" data-aos="zoom-in">
+                    <div class="impact-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>₹500</h3>
+                        <h4>Monthly Nutrition</h4>
+                        <p>Provides nutritious meals for one child for an entire month, ensuring proper growth and development.</p>
+                        <div class="impact-details">
+                            <span>30 nutritious meals</span>
+                            <span>Essential vitamins & minerals</span>
+                            <span>Healthy growth support</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="impact-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>₹1,000</h3>
+                        <h4>Educational Kit</h4>
+                        <p>Complete set of books, notebooks, stationery, and learning materials for one child for a full academic year.</p>
+                        <div class="impact-details">
+                            <span>Textbooks & notebooks</span>
+                            <span>Stationery supplies</span>
+                            <span>Art & craft materials</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="impact-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>₹2,000</h3>
+                        <h4>School Uniform & Kit</h4>
+                        <p>Complete school uniform, shoes, bag, and essential school supplies to help a child attend school with dignity.</p>
+                        <div class="impact-details">
+                            <span>School uniform set</span>
+                            <span>Shoes & school bag</span>
+                            <span>Complete dignity package</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="impact-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>₹5,000</h3>
+                        <h4>Health Camp</h4>
+                        <p>Comprehensive health screening including blood tests, ECG, and dental checkup for 10 children.</p>
+                        <div class="impact-details">
+                            <span>Blood tests & ECG</span>
+                            <span>Dental checkups</span>
+                            <span>Health awareness</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="impact-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>₹10,000</h3>
+                        <h4>Complete Child Support</h4>
+                        <p>Full support for one child including education, nutrition, health care, and skill development for 3 months.</p>
+                        <div class="impact-details">
+                            <span>Education & tutoring</span>
+                            <span>Daily nutrition</span>
+                            <span>Healthcare & skills</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="impact-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="impact-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="impact-content">
+                        <h3>₹25,000</h3>
+                        <h4>Skills Training Program</h4>
+                        <p>Complete vocational training program for 10 women including materials, training, and initial setup support.</p>
+                        <div class="impact-details">
+                            <span>Skills training for 10 women</span>
+                            <span>Materials & equipment</span>
+                            <span>Income generation setup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Ways to Donate Section -->
+    <section class="other-donation-methods-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Other Ways to Support</h2>
+                <p class="section-description">Multiple ways to contribute to our mission</p>
+            </div>
+            
+            <div class="donation-methods-grid">
+                <div class="method-card" data-aos="fade-up">
+                    <div class="method-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>UPI/Digital Payment</h3>
+                    <p>Quick and easy digital payments through UPI, Google Pay, PhonePe, or Paytm</p>
+                    <div class="method-details">
+                        <p><strong>UPI ID:</strong> spreadasmile@upi</p>
+                        <p><strong>Google Pay:</strong> +91 97178 66620</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="copyUPI()">
+                        <i class="fas fa-copy"></i>
+                        Copy UPI ID
+                    </button>
+                </div>
+
+                <div class="method-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="method-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Bank Transfer</h3>
+                    <p>Direct bank transfer for larger donations or institutional giving</p>
+                    <div class="method-details">
+                        <p><strong>Account Name:</strong> Spread A Smile India</p>
+                        <p><strong>Account No:</strong> 1234567890</p>
+                        <p><strong>IFSC:</strong> SBIN0001234</p>
+                        <p><strong>Bank:</strong> State Bank of India</p>
+                    </div>
+                    <a href="/contact" class="btn btn-outline">
+                        <i class="fas fa-envelope"></i>
+                        Get Bank Details
+                    </a>
+                </div>
+
+                <div class="method-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="method-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <h3>In-Kind Donations</h3>
+                    <p>Donate items like clothes, books, toys, or educational materials</p>
+                    <div class="method-details">
+                        <p><strong>Needed Items:</strong></p>
+                        <ul>
+                            <li>Children's clothes (ages 4-17)</li>
+                            <li>Educational books & materials</li>
+                            <li>Toys & games</li>
+                            <li>Art & craft supplies</li>
+                        </ul>
+                    </div>
+                    <a href="/contact" class="btn btn-outline">
+                        <i class="fas fa-truck"></i>
+                        Arrange Pickup
+                    </a>
+                </div>
+
+                <div class="method-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="method-icon">
+                        <i class="fas fa-birthday-cake"></i>
+                    </div>
+                    <h3>Special Occasion Giving</h3>
+                    <p>Celebrate birthdays, anniversaries, or festivals by supporting our children</p>
+                    <div class="method-details">
+                        <p><strong>Options:</strong></p>
+                        <ul>
+                            <li>Birthday fundraisers</li>
+                            <li>Memorial donations</li>
+                            <li>Festival celebrations</li>
+                            <li>Corporate milestones</li>
+                        </ul>
+                    </div>
+                    <a href="/contact" class="btn btn-outline">
+                        <i class="fas fa-gift"></i>
+                        Plan Special Giving
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tax Benefits Section -->
+    <section class="tax-benefits-section" data-aos="fade-up">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="tax-content">
+                        <h2>Tax Benefits of Donating</h2>
+                        <p>Your donation to Spread A Smile India is eligible for tax deduction under Section 80G of the Income Tax Act.</p>
+                        
+                        <div class="tax-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>80G Tax Exemption</h4>
+                                    <p>Get 50% tax deduction on your donation amount</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>Official Receipt</h4>
+                                    <p>Receive 80G certificate within 30 days of donation</p>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <div>
+                                    <h4>Digital Records</h4>
+                                    <p>All donation records maintained digitally for easy access</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tax-calculator">
+                        <h3>Tax Savings Calculator</h3>
+                        <div class="calculator-form">
+                            <div class="input-group">
+                                <label>Donation Amount (₹)</label>
+                                <input type="number" id="donationAmount" placeholder="Enter amount" min="100">
+                            </div>
+                            <div class="input-group">
+                                <label>Your Tax Bracket</label>
+                                <select id="taxBracket">
+                                    <option value="5">5%</option>
+                                    <option value="20">20%</option>
+                                    <option value="30" selected>30%</option>
+                                </select>
+                            </div>
+                            <div class="calculation-result">
+                                <div class="result-item">
+                                    <span>Tax Deduction (50%):</span>
+                                    <span id="taxDeduction">₹0</span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Tax Saved:</span>
+                                    <span id="taxSaved">₹0</span>
+                                </div>
+                                <div class="result-item total">
+                                    <span>Effective Cost:</span>
+                                    <span id="effectiveCost">₹0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transparency Section -->
+    <section class="transparency-section" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Financial Transparency</h2>
+                <p class="section-description">We believe in complete transparency about how your donations are used</p>
+            </div>
+            
+            <div class="transparency-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="fund-utilization">
+                            <h3>How We Use Your Donations</h3>
+                            <div class="utilization-chart">
+                                <div class="chart-item">
+                                    <div class="chart-bar">
+                                        <div class="bar-fill" style="width: 70%;" data-percentage="70"></div>
+                                    </div>
+                                    <div class="chart-label">
+                                        <span class="label-text">Direct Program Costs</span>
+                                        <span class="label-percentage">70%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="chart-item">
+                                    <div class="chart-bar">
+                                        <div class="bar-fill" style="width: 20%;" data-percentage="20"></div>
+                                    </div>
+                                    <div class="chart-label">
+                                        <span class="label-text">Administrative Costs</span>
+                                        <span class="label-percentage">20%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="chart-item">
+                                    <div class="chart-bar">
+                                        <div class="bar-fill" style="width: 10%;" data-percentage="10"></div>
+                                    </div>
+                                    <div class="chart-label">
+                                        <span class="label-text">Fundraising & Outreach</span>
+                                        <span class="label-percentage">10%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="transparency-features">
+                            <h3>Our Commitment to You</h3>
+                            <div class="feature-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-file-alt"></i>
+                                    <div>
+                                        <h4>Annual Reports</h4>
+                                        <p>Detailed financial and impact reports published annually</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <i class="fas fa-camera"></i>
+                                    <div>
+                                        <h4>Regular Updates</h4>
+                                        <p>Photo and video updates on how your donations are being used</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <i class="fas fa-calculator"></i>
+                                    <div>
+                                        <h4>Audited Accounts</h4>
+                                        <p>Independently audited financial statements available on request</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="feature-item">
+                                    <i class="fas fa-envelope-open"></i>
+                                    <div>
+                                        <h4>Donor Communication</h4>
+                                        <p>Regular communication about impact and organizational updates</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Appeal Section -->
+    <section class="emergency-appeal-section" data-aos="fade-up">
+        <div class="container">
+            <div class="appeal-content">
+                <div class="appeal-urgent">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>Urgent Need</span>
+                </div>
+                <h2>Help Us Reach More Children</h2>
+                <p>We currently have a waiting list of 50+ children who need our support. Your immediate donation can help us expand our capacity and reach more children in need.</p>
+                
+                <div class="appeal-stats">
+                    <div class="appeal-stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Children on waiting list</span>
+                    </div>
+                    <div class="appeal-stat">
+                        <span class="stat-number">₹2,50,000</span>
+                        <span class="stat-label">Needed to expand capacity</span>
+                    </div>
+                    <div class="appeal-stat">
+                        <span class="stat-number">75%</span>
+                        <span class="stat-label">Goal achieved</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+                
+                <div class="appeal-cta">
+                    <a href="#quick-donate" class="btn btn-primary btn-large">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        Donate Now to Help
+                    </a>
+                    <p>Every donation brings us closer to helping more children</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+// Tax calculator functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const donationAmount = document.getElementById('donationAmount');
+    const taxBracket = document.getElementById('taxBracket');
+    const taxDeduction = document.getElementById('taxDeduction');
+    const taxSaved = document.getElementById('taxSaved');
+    const effectiveCost = document.getElementById('effectiveCost');
+    
+    function calculateTax() {
+        const amount = parseFloat(donationAmount.value) || 0;
+        const bracket = parseFloat(taxBracket.value) || 30;
+        
+        const deduction = amount * 0.5; // 50% under 80G
+        const saved = deduction * (bracket / 100);
+        const effective = amount - saved;
+        
+        taxDeduction.textContent = `₹${deduction.toLocaleString()}`;
+        taxSaved.textContent = `₹${saved.toLocaleString()}`;
+        effectiveCost.textContent = `₹${effective.toLocaleString()}`;
+    }
+    
+    donationAmount.addEventListener('input', calculateTax);
+    taxBracket.addEventListener('change', calculateTax);
+});
+
+// UPI copy functionality
+function copyUPI() {
+    navigator.clipboard.writeText('spreadasmile@upi').then(function() {
+        alert('UPI ID copied to clipboard!');
+    });
+}
+
+// Custom amount toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const customRadio = document.querySelector('input[value="custom"]');
+    const customInput = document.querySelector('.custom-amount-input');
+    const amountRadios = document.querySelectorAll('input[name="amount"]');
+    
+    amountRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.value === 'custom') {
+                customInput.style.display = 'block';
+            } else {
+                customInput.style.display = 'none';
+            }
+        });
+    });
+});
+</script>
+
+<%- include('../partials/footer') %>
