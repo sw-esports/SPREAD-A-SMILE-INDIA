@@ -1,5 +1,6 @@
 # Simple Git Operations for SPREAD A SMILE INDIA
 # Run this in PowerShell for better Git support
+# Updated to support dynamic branch detection - pushing to current branch instead of hardcoded 'main'
 
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host "    SPREAD A SMILE INDIA - Git Helper" -ForegroundColor Yellow  
@@ -90,8 +91,16 @@ git add .
 Write-Host "📝 Committing: $message" -ForegroundColor Yellow
 git commit -m $message
 
-Write-Host "🚀 Pushing to GitHub..." -ForegroundColor Yellow
-git push origin main
+# Get current branch name
+$currentBranch = git branch --show-current 2>$null
+if (-not $currentBranch) {
+    Write-Host "❌ ERROR: Could not determine current branch!" -ForegroundColor Red
+    Read-Host "Press Enter to exit"
+    exit 1
+}
+
+Write-Host "🚀 Pushing to GitHub on branch: $currentBranch..." -ForegroundColor Yellow
+git push origin $currentBranch
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host ""

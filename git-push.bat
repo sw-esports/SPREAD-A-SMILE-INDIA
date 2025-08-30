@@ -1,4 +1,5 @@
 @echo off
+REM Updated to support dynamic branch detection - pushing to current branch instead of hardcoded 'main'
 echo ========================================
 echo    SPREAD A SMILE INDIA - Quick Push
 echo ========================================
@@ -49,8 +50,17 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo Pushing to GitHub...
-git push origin main 2>&1
+REM Get current branch name
+for /f "tokens=*" %%i in ('git branch --show-current 2^>nul') do set current_branch=%%i
+
+if "%current_branch%"=="" (
+    echo ERROR: Could not determine current branch!
+    pause
+    exit /b 1
+)
+
+echo Pushing to GitHub on branch: %current_branch%
+git push origin %current_branch% 2>&1
 if errorlevel 1 (
     echo ERROR: Failed to push to GitHub!
     echo Make sure you have internet connection and GitHub access.
