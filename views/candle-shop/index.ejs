@@ -317,7 +317,26 @@
                     <div class="featured-slider" id="featuredSlider">
                         <% featuredProducts.slice(0, 6).forEach(product => { %>
                             <div class="featured-slide">
-                                <%- include('../components/candle-card', { product: product }) %>
+                                <div class="featured-card">
+                                    <div class="card-image">
+                                        <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy">
+                                        <div class="card-overlay">
+                                            <button class="quick-view-btn" onclick="openQuickView('<%= product.id %>')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="wishlist-btn" onclick="toggleWishlist('<%= product.id %>')">
+                                                <i class="far fa-heart"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-content">
+                                        <h3><%= product.name %></h3>
+                                        <p class="price">₹<%= product.price %></p>
+                                        <button class="add-to-cart-btn" onclick="addToCart('<%= product.id %>')">
+                                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         <% }) %>
                     </div>
