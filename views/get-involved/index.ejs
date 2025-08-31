@@ -1,486 +1,697 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Involved - SASI Foundation</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/components.css">
-    <style>
-        .hero-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .cta-button {
-            background: linear-gradient(45deg, #ff6b6b, #ff5722);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-        }
-
-        .cta-button.secondary {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        .cta-button.secondary:hover {
-            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-        }
-
-        .involvement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .involvement-card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .involvement-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #667eea;
-        }
-
-        .card-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .card-description {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .card-button {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .card-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .urgency-section {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ff5722 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            position: relative;
-        }
-
-        .urgency-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .urgency-text {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        .impact-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .emotional-appeal {
-            background: #f8f9fa;
-            padding: 80px 20px;
-            text-align: center;
-        }
-
-        .appeal-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 30px;
-        }
-
-        .appeal-text {
-            font-size: 1.3rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-        }
-
-        .highlight-text {
-            color: #ff6b6b;
-            font-weight: 700;
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease forwards;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.8s ease forwards;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .involvement-grid {
-                padding: 40px 20px;
-            }
-            
-            .appeal-title {
-                font-size: 2.2rem;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <%- include('../partials/header') %>
-
+<main class="get-involved-page">
     <!-- Hero Section -->
     <section class="hero-section">
-        <div class="hero-content fade-in">
-            <h1 class="hero-title">Every Child Deserves a Brighter Future</h1>
-            <p class="hero-subtitle">Join us in creating lasting change. Your involvement can transform lives and build stronger communities.</p>
-            <div class="cta-buttons">
-                <a href="/get-involved/donate" class="cta-button">
-                    ❤️ Donate Now
-                </a>
-                <a href="/get-involved/volunteer" class="cta-button secondary">
-                    🤝 Volunteer Today
-                </a>
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop" alt="Children learning together" class="hero-bg-image">
+        </div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">Join Our Mission</span>
+                <h1 class="hero-title">Be the Change You Want to See</h1>
+                <p class="hero-description">
+                    Every great change begins with a single step. Join thousands of changemakers who are already making a difference in children's lives across India.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="number">5000+</span>
+                        <span class="label">Lives Transformed</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">200+</span>
+                        <span class="label">Active Volunteers</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">50+</span>
+                        <span class="label">Communities Reached</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Urgency Section -->
-    <section class="urgency-section">
-        <div class="container slide-in-left">
-            <h2 class="urgency-title">Time is Running Out</h2>
-            <p class="urgency-text">Every moment we wait, more children go without basic needs. Your action today can change tomorrow.</p>
+    <!-- Main Ways to Help -->
+    <section class="ways-to-help">
+        <div class="container">
+            <div class="section-header">
+                <h2>How You Can Make a Difference</h2>
+                <p>Choose the way that resonates with you - every contribution matters</p>
+            </div>
             
-            <div class="impact-stats">
-                <div class="stat-item">
-                    <span class="stat-number" data-count="1500">0</span>
-                    <span class="stat-label">Children Waiting for Help</span>
+            <div class="help-options">
+                <div class="help-option primary">
+                    <div class="option-visual">
+                        <div class="option-icon">💝</div>
+                        <h3>Support with Donation</h3>
+                    </div>
+                    <div class="option-content">
+                        <p>Your financial contribution directly transforms lives. From ₹500 to sponsor a child's monthly meals to larger contributions that fund entire programs.</p>
+                        <div class="impact-preview">
+                            <div class="impact-item">
+                                <span class="amount">₹500</span>
+                                <span class="result">Monthly nutrition for 1 child</span>
+                            </div>
+                            <div class="impact-item">
+                                <span class="amount">₹2000</span>
+                                <span class="result">Complete school kit & uniform</span>
+                            </div>
+                        </div>
+                        <a href="/get-involved/donate" class="btn btn-primary">
+                            <i class="fas fa-heart"></i>
+                            Donate Now
+                        </a>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="50">0</span>
-                    <span class="stat-label">Villages Without Access</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" data-count="365">0</span>
-                    <span class="stat-label">Days They've Been Waiting</span>
+
+                <div class="help-option secondary">
+                    <div class="option-visual">
+                        <div class="option-icon">🤝</div>
+                        <h3>Volunteer Your Time</h3>
+                    </div>
+                    <div class="option-content">
+                        <p>Share your skills, time, and passion. Whether you have 2 hours a week or a full day a month, there's a perfect volunteer opportunity for you.</p>
+                        <div class="volunteer-types">
+                            <span class="tag">Teaching</span>
+                            <span class="tag">Mentoring</span>
+                            <span class="tag">Event Support</span>
+                            <span class="tag">Administrative</span>
+                        </div>
+                        <a href="/get-involved/volunteer" class="btn btn-secondary">
+                            <i class="fas fa-hands-helping"></i>
+                            Join Volunteers
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Ways to Get Involved -->
-    <section class="involvement-grid">
-        <div class="involvement-card slide-in-left">
-            <div class="card-icon">💝</div>
-            <h3 class="card-title">Make a Donation</h3>
-            <p class="card-description">Your financial support directly impacts children's lives. Every rupee counts towards education, healthcare, and basic necessities.</p>
-            <a href="/get-involved/donate" class="card-button">Donate Now</a>
-        </div>
+    <!-- Additional Ways -->
+    <section class="additional-ways">
+        <div class="container">
+            <h2>More Ways to Get Involved</h2>
+            <div class="additional-grid">
+                <div class="additional-card">
+                    <div class="card-icon">🏢</div>
+                    <h3>Corporate Partnership</h3>
+                    <p>Partner with us for CSR initiatives, employee engagement, and sustainable impact programs.</p>
+                    <a href="/contact" class="card-link">Learn More</a>
+                </div>
 
-        <div class="involvement-card fade-in">
-            <div class="card-icon">🤲</div>
-            <h3 class="card-title">Volunteer Your Time</h3>
-            <p class="card-description">Share your skills and passion. Teach, mentor, or help with events. Your time creates meaningful connections.</p>
-            <a href="/get-involved/volunteer" class="card-button">Join Volunteers</a>
-        </div>
+                <div class="additional-card">
+                    <div class="card-icon">💼</div>
+                    <h3>Career Opportunities</h3>
+                    <p>Build a meaningful career with purpose. Join our team of passionate professionals.</p>
+                    <a href="/get-involved/careers" class="card-link">View Openings</a>
+                </div>
 
-        <div class="involvement-card slide-in-right">
-            <div class="card-icon">🤝</div>
-            <h3 class="card-title">Partner With Us</h3>
-            <p class="card-description">Collaborate with us on projects that amplify our impact. Together, we can reach more communities.</p>
-            <a href="/get-involved/collaborate" class="card-button">Become Partner</a>
-        </div>
+                <div class="additional-card">
+                    <div class="card-icon">📢</div>
+                    <h3>Spread Awareness</h3>
+                    <p>Help us reach more people by sharing our mission on social media and in your network.</p>
+                    <a href="/media" class="card-link">Share Our Story</a>
+                </div>
 
-        <div class="involvement-card slide-in-left">
-            <div class="card-icon">💼</div>
-            <h3 class="card-title">Career Opportunities</h3>
-            <p class="card-description">Build a meaningful career while making a difference. Join our team of dedicated professionals.</p>
-            <a href="/get-involved/careers" class="card-button">View Openings</a>
-        </div>
-
-        <div class="involvement-card fade-in">
-            <div class="card-icon">📢</div>
-            <h3 class="card-title">Spread Awareness</h3>
-            <p class="card-description">Share our mission with your network. Help us reach more hearts and hands willing to help.</p>
-            <a href="/media" class="card-button">Share Our Story</a>
-        </div>
-
-        <div class="involvement-card slide-in-right">
-            <div class="card-icon">🎁</div>
-            <h3 class="card-title">Corporate Giving</h3>
-            <p class="card-description">Engage your employees and customers in meaningful giving. Create a culture of social responsibility.</p>
-            <a href="/contact" class="card-button">Contact Us</a>
-        </div>
-    </section>
-
-    <!-- Emotional Appeal Section -->
-    <section class="emotional-appeal">
-        <div class="container slide-in-right">
-            <h2 class="appeal-title">Your Action Today = Their Hope Tomorrow</h2>
-            <p class="appeal-text">
-                Behind every statistic is a child with dreams, hopes, and unlimited potential. 
-                <span class="highlight-text">Your involvement doesn't just change numbers - it changes lives.</span>
-                Be the reason a child smiles today.
-            </p>
-            <div class="cta-buttons">
-                <a href="/get-involved/donate" class="cta-button">
-                    💕 Start Making a Difference
-                </a>
+                <div class="additional-card">
+                    <div class="card-icon">🎁</div>
+                    <h3>In-Kind Donations</h3>
+                    <p>Donate books, clothes, educational materials, or other items that directly benefit children.</p>
+                    <a href="/contact" class="card-link">Donate Items</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <%- include('../partials/footer') %>
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-content">
+                <div class="community-text">
+                    <h2>Join Our Community</h2>
+                    <p>Connect with like-minded individuals who share your passion for creating positive change. Our community is a space for learning, sharing, and growing together.</p>
+                    <div class="community-features">
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <span>Monthly meetups and events</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Skill development workshops</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-heart"></i>
+                            <span>Impact stories and updates</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="community-image">
+                    <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=600&h=400&fit=crop" alt="Community volunteers" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // Counter animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('[data-count]');
-            
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                const increment = target / 100;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    counter.textContent = Math.floor(current);
-                    
-                    if (current >= target) {
-                        counter.textContent = target;
-                        clearInterval(timer);
-                    }
-                }, 20);
-            });
-        }
+    <!-- Call to Action -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Make a Difference?</h2>
+                <p>Your journey of impact starts with a single step. Choose how you want to begin:</p>
+                <div class="cta-buttons">
+                    <a href="/get-involved/donate" class="btn btn-primary btn-large">
+                        <i class="fas fa-heart"></i>
+                        Start with a Donation
+                    </a>
+                    <a href="/get-involved/volunteer" class="btn btn-outline btn-large">
+                        <i class="fas fa-hands-helping"></i>
+                        Become a Volunteer
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+<style>
+/* Theme Support Variables */
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #f59e0b;
+    --accent-color: #10b981;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9fafb;
+    --border-color: #e5e7eb;
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0) translateX(0)';
-                    
-                    // Trigger counter animation for urgency section
-                    if (entry.target.classList.contains('urgency-section')) {
-                        animateCounters();
-                    }
-                }
-            });
-        }, observerOptions);
+[data-theme="dark"] {
+    --primary-color: #3b82f6;
+    --secondary-color: #fbbf24;
+    --accent-color: #34d399;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --bg-primary: #1f2937;
+    --bg-secondary: #111827;
+    --border-color: #374151;
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
 
-        // Observe all animated elements
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right');
-            animatedElements.forEach(el => {
-                el.style.opacity = '0';
-                if (el.classList.contains('slide-in-left')) {
-                    el.style.transform = 'translateX(-50px)';
-                } else if (el.classList.contains('slide-in-right')) {
-                    el.style.transform = 'translateX(50px)';
-                } else {
-                    el.style.transform = 'translateY(30px)';
-                }
-                observer.observe(el);
-            });
+.get-involved-page {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
 
-            // Immediate animation for hero section
-            setTimeout(() => {
-                const heroContent = document.querySelector('.hero-content');
-                if (heroContent) {
-                    heroContent.style.opacity = '1';
-                    heroContent.style.transform = 'translateY(0)';
-                }
-            }, 100);
-        });
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
 
-        // Add pulse effect to donation buttons
-        setInterval(() => {
-            const donateButtons = document.querySelectorAll('a[href="/get-involved/donate"]');
-            donateButtons.forEach(button => {
-                button.style.animation = 'pulse 1.5s ease-in-out';
-                setTimeout(() => {
-                    button.style.animation = '';
-                }, 1500);
-            });
-        }, 5000);
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
 
-        // Pulse animation keyframes
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-                100% { transform: scale(1); }
+.hero-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(16, 185, 129, 0.6));
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    color: white;
+    text-align: center;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.hero-description {
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    opacity: 0.95;
+    line-height: 1.6;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat .number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.stat .label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* Ways to Help Section */
+.ways-to-help {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.section-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.help-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.help-option {
+    background: var(--bg-primary);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease;
+}
+
+.help-option:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.help-option.primary {
+    border: 2px solid var(--primary-color);
+}
+
+.help-option.secondary {
+    border: 2px solid var(--accent-color);
+}
+
+.option-visual {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.option-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.option-visual h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.option-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.impact-preview {
+    margin: 2rem 0;
+}
+
+.impact-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+.impact-item .amount {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.volunteer-types {
+    margin: 2rem 0;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin: 0.25rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #059669;
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-large {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.1rem;
+}
+
+/* Additional Ways */
+.additional-ways {
+    padding: 5rem 0;
+}
+
+.additional-ways h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--text-primary);
+}
+
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.additional-card {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.additional-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.additional-card .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.additional-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.additional-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.card-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.card-link:hover {
+    border-bottom-color: var(--primary-color);
+}
+
+/* Community Section */
+.community-section {
+    padding: 5rem 0;
+    background: var(--bg-secondary);
+}
+
+.community-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.community-text h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.community-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.community-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.feature i {
+    color: var(--accent-color);
+    font-size: 1.2rem;
+}
+
+.community-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: var(--shadow-medium);
+}
+
+/* Final CTA */
+.final-cta {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
+    text-align: center;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.95;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.final-cta .btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.final-cta .btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-stats {
+        gap: 2rem;
+    }
+    
+    .help-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .additional-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    
+    .community-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .help-option {
+        padding: 1.5rem;
+    }
+}
+</style>
+
+<script>
+// Theme toggle functionality
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+// Load saved theme
+document.addEventListener('DOMContentLoaded', function() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    // Smooth animations on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
-        `;
-        document.head.appendChild(style);
-    </script>
-</body>
-</html>
+        });
+    }, observerOptions);
+    
+    // Observe sections for animations
+    document.querySelectorAll('.section-header, .help-option, .additional-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+});
+</script>
+
+<%- include('../partials/footer') %>

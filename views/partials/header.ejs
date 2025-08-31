@@ -5,6 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'Spread A Smile India - Transforming lives of street children in Delhi since 2005. Education, healthcare, nutrition, and empowerment programs.' %>">
+    <meta name="keywords" content="NGO Delhi, street children, education support, charity India, Sangita Mehra, Munirka, volunteer, donate">
+    <meta name="author" content="Spread A Smile India">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://spreadasmileindia.org<%= typeof currentPath !== 'undefined' ? currentPath : '' %>">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="<%= title %>">
+    <meta property="og:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'Transforming lives of street children through education and empowerment since 2005.' %>">
+    <meta property="og:image" content="https://spreadasmileindia.org/src/images/og-image.jpg">
+    <meta property="og:url" content="https://spreadasmileindia.org<%= typeof currentPath !== 'undefined' ? currentPath : '' %>">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Spread A Smile India">
+    
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<%= title %>">
+    <meta name="twitter:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : 'Transforming lives of street children through education and empowerment since 2005.' %>">
+    <meta name="twitter:image" content="https://spreadasmileindia.org/src/images/twitter-card.jpg">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/src/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/src/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/src/icons/favicon-16x16.png">
+    <link rel="manifest" href="/src/icons/manifest.json">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        "name": "Spread A Smile India",
+        "description": "Delhi-based NGO transforming lives of street children through education and empowerment since 2005",
+        "url": "https://spreadasmileindia.org",
+        "logo": "https://spreadasmileindia.org/src/images/logo.png",
+        "founder": {
+            "@type": "Person",
+            "name": "Sangita Mehra"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "108/A 1st Floor, Mandir Wali Gali",
+            "addressLocality": "Munirka Village",
+            "addressRegion": "Delhi",
+            "postalCode": "110067",
+            "addressCountry": "IN"
+        },
+        "telephone": "+91-97178-66620",
+        "sameAs": [
+            "https://instagram.com/sangitamehra1",
+            "https://facebook.com/SpreadASmileIndia"
+        ]
+    }
+    </script>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +83,13 @@
     <% if (page === 'home') { %>
     <link rel="stylesheet" href="/css/homepage.css">
     <% } %>
+    
+    <!-- Performance & Accessibility Scripts -->
+    <script src="/js/performance-optimizer.js" defer></script>
+    <script src="/js/accessibility-enhancer.js" defer></script>
+    <script src="/js/error-handler.js" defer></script>
+    <script src="/js/ui-enhancer.js" defer></script>
+    <script src="/js/search-enhancer.js" defer></script>
     
     <!-- AOS (Animate On Scroll) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -123,7 +187,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/get-involved/volunteer"><i class="fas fa-hand-holding-heart"></i> Volunteer</a></li>
                                 <li><a href="/get-involved/donate"><i class="fas fa-heart"></i> Donate</a></li>
-                                <li><a href="/get-involved/collaborate"><i class="fas fa-users-cog"></i> Partner</a></li>
+                                <li><a href="/get-involved/partners"><i class="fas fa-users-cog"></i> Partner</a></li>
                                 <li><a href="/get-involved/careers"><i class="fas fa-briefcase"></i> Careers</a></li>
                             </ul>
                         </li>
@@ -132,6 +196,11 @@
                 
                 <!-- Right Actions -->
                 <div class="nav-actions" data-aos="fade-left">
+                    <!-- Search Button -->
+                    <button class="search-btn" onclick="openSearchModal()" aria-label="Search website" title="Search (Ctrl+K)">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
                     <!-- Red Heart Donate Button -->
                     <a href="/get-involved/donate" class="btn-donate-heart">
                         <i class="fas fa-heart heart-icon"></i>

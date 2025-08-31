@@ -1579,6 +1579,31 @@
     }
 }
 
+/* SEARCH BUTTON */
+.search-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.25rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-right: 0.5rem;
+    position: relative;
+}
+
+.search-btn:hover {
+    background: var(--bg-secondary);
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+.search-btn:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
 /* RED DONATE BUTTON - ENHANCED WITH NEW MICRO-INTERACTIONS */
 .btn-donate-heart {
     display: flex;

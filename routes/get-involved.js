@@ -36,8 +36,8 @@ router.get('/donate', (req, res) => {
 });
 
 // Collaborate
-router.get('/collaborate', (req, res) => {
-  res.render('get-involved/collaborate', { 
+router.get('/partners', (req, res) => {
+  res.render('get-involved/partners', { 
     title: 'Collaborate With Us - Spread A Smile India',
     page: 'get-involved',
     metaDescription: 'Collaborate with us through CSR partnerships, corporate sponsorships, or institutional alliances.'
