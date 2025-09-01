@@ -484,6 +484,16 @@
     flex-direction: column;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.cart-content::-webkit-scrollbar {
+    width: 0px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
 }
 
 .cart-sidebar.active .cart-content {
@@ -533,6 +543,16 @@
     flex: 1;
     overflow-y: auto;
     padding: 1rem 0;
+    /* Hide scrollbar */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.cart-items::-webkit-scrollbar {
+    width: 0px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
 }
 
 .empty-cart {

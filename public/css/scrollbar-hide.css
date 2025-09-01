@@ -1,0 +1,174 @@
+/* 
+   COMPREHENSIVE SCROLLBAR HIDING SOLUTION
+   This file ensures all scrollbars are hidden except the main body scrollbar
+   Add this to your main CSS or include it as a separate stylesheet
+*/
+
+/* ===== GLOBAL SCROLLBAR HIDING ===== */
+
+/* Hide all scrollbars for webkit browsers (Chrome, Safari, Edge) */
+*:not(html):not(body)::-webkit-scrollbar {
+    width: 0px !important;
+    height: 0px !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+*:not(html):not(body)::-webkit-scrollbar-track,
+*:not(html):not(body)::-webkit-scrollbar-thumb,
+*:not(html):not(body)::-webkit-scrollbar-corner {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+/* Hide scrollbars for Firefox and other browsers */
+*:not(html):not(body) {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+/* ===== SPECIFIC ELEMENT TARGETING ===== */
+
+/* Target common scrollable elements */
+div, section, article, aside, nav, header, footer,
+.container, .wrapper, .content, .sidebar, .modal, .popup,
+.dropdown, .tooltip, .cart-content, .cart-items, .nav-center,
+iframe, textarea, pre, code, ul, ol, li,
+.overflow-auto, .overflow-y-auto, .overflow-scroll {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+/* Webkit specific hiding for common elements */
+div::-webkit-scrollbar, section::-webkit-scrollbar, article::-webkit-scrollbar,
+aside::-webkit-scrollbar, nav::-webkit-scrollbar, header::-webkit-scrollbar,
+footer::-webkit-scrollbar, .container::-webkit-scrollbar, .wrapper::-webkit-scrollbar,
+.content::-webkit-scrollbar, .sidebar::-webkit-scrollbar, .modal::-webkit-scrollbar,
+.popup::-webkit-scrollbar, .dropdown::-webkit-scrollbar, .tooltip::-webkit-scrollbar,
+.cart-content::-webkit-scrollbar, .cart-items::-webkit-scrollbar, .nav-center::-webkit-scrollbar,
+iframe::-webkit-scrollbar, textarea::-webkit-scrollbar, pre::-webkit-scrollbar,
+code::-webkit-scrollbar, ul::-webkit-scrollbar, ol::-webkit-scrollbar, li::-webkit-scrollbar,
+.overflow-auto::-webkit-scrollbar, .overflow-y-auto::-webkit-scrollbar, .overflow-scroll::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+/* ===== PRESERVE MAIN BODY SCROLLBAR ===== */
+
+/* Ensure main document scrollbar remains visible and styled */
+html, body {
+    scrollbar-width: auto !important;
+    -ms-overflow-style: scrollbar !important;
+    overflow-y: auto !important;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 8px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 0.8) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+    background: rgba(193, 193, 193, 0.9) !important;
+    border-radius: 4px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 168, 168, 0.9) !important;
+}
+
+/* Dark theme support for main scrollbar */
+[data-theme="dark"] html::-webkit-scrollbar-track,
+[data-theme="dark"] body::-webkit-scrollbar-track {
+    background: rgba(45, 45, 45, 0.8) !important;
+}
+
+[data-theme="dark"] html::-webkit-scrollbar-thumb,
+[data-theme="dark"] body::-webkit-scrollbar-thumb {
+    background: rgba(85, 85, 85, 0.9) !important;
+}
+
+[data-theme="dark"] html::-webkit-scrollbar-thumb:hover,
+[data-theme="dark"] body::-webkit-scrollbar-thumb:hover {
+    background: rgba(115, 115, 115, 0.9) !important;
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+/* Class to keep scrollbar visible on specific elements if needed */
+.keep-scroll, .keep-scroll * {
+    scrollbar-width: auto !important;
+    -ms-overflow-style: scrollbar !important;
+}
+
+.keep-scroll::-webkit-scrollbar, .keep-scroll *::-webkit-scrollbar {
+    width: 8px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Class to force hide scrollbar on specific elements */
+.force-hide-scroll {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.force-hide-scroll::-webkit-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+/* ===== RESPONSIVE BEHAVIOR ===== */
+
+/* Ensure scrollbar hiding works on mobile devices */
+@media (max-width: 768px) {
+    *:not(html):not(body) {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    *:not(html):not(body)::-webkit-scrollbar {
+        width: 0 !important;
+        height: 0 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        display: none !important;
+    }
+}
+
+/* ===== BROWSER-SPECIFIC FIXES ===== */
+
+/* Additional Firefox support */
+@-moz-document url-prefix() {
+    *:not(html):not(body) {
+        scrollbar-width: none !important;
+    }
+}
+
+/* Additional IE/Edge support */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    *:not(html):not(body) {
+        -ms-overflow-style: none !important;
+    }
+}

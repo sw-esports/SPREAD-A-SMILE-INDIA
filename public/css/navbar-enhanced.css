@@ -704,6 +704,16 @@
         transform: translateX(100%);
         transition: transform 0.3s ease, opacity 0.3s ease;
         opacity: 0;
+        /* Hide scrollbar */
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+    
+    .nav-center::-webkit-scrollbar {
+        width: 0px !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        display: none !important;
     }
     
     [data-theme="dark"] .nav-center {

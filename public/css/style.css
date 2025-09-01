@@ -1,4 +1,4 @@
-/* Enhanced CSS with Google Fonts, Icons, and Micro-interactions */
+    /* Enhanced CSS with Google Fonts, Icons, and Micro-interactions */
 
 :root {
   /* Light theme colors */
@@ -35,6 +35,133 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* ===== SCROLLBAR HIDING SOLUTION ===== */
+/* Hide all scrollbars except main body scrollbar */
+
+/* Hide scrollbars for webkit browsers (Chrome, Safari, Edge) */
+*:not(html):not(body)::-webkit-scrollbar {
+  width: 0px !important;
+  height: 0px !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+*:not(html):not(body)::-webkit-scrollbar-track {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+*:not(html):not(body)::-webkit-scrollbar-thumb {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+/* Hide scrollbars for Firefox */
+*:not(html):not(body) {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Hide scrollbars on specific elements */
+div:not(.main-content):not(.page-wrapper):not(.site-wrapper),
+section:not(.main-section),
+article,
+aside,
+nav,
+header,
+footer,
+.container:not(.main-container),
+.wrapper:not(.main-wrapper),
+.content:not(.main-content),
+iframe,
+textarea:not(.keep-scroll),
+pre:not(.keep-scroll),
+code:not(.keep-scroll),
+.modal,
+.popup,
+.overlay,
+.dropdown,
+.tooltip {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Webkit specific hiding for the above elements */
+div:not(.main-content):not(.page-wrapper):not(.site-wrapper)::-webkit-scrollbar,
+section:not(.main-section)::-webkit-scrollbar,
+article::-webkit-scrollbar,
+aside::-webkit-scrollbar,
+nav::-webkit-scrollbar,
+header::-webkit-scrollbar,
+footer::-webkit-scrollbar,
+.container:not(.main-container)::-webkit-scrollbar,
+.wrapper:not(.main-wrapper)::-webkit-scrollbar,
+.content:not(.main-content)::-webkit-scrollbar,
+iframe::-webkit-scrollbar,
+textarea:not(.keep-scroll)::-webkit-scrollbar,
+pre:not(.keep-scroll)::-webkit-scrollbar,
+code:not(.keep-scroll)::-webkit-scrollbar,
+.modal::-webkit-scrollbar,
+.popup::-webkit-scrollbar,
+.overlay::-webkit-scrollbar,
+.dropdown::-webkit-scrollbar,
+.tooltip::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  display: none !important;
+}
+
+/* Ensure main body scrollbar remains visible */
+html, body {
+  scrollbar-width: auto !important;
+  -ms-overflow-style: scrollbar !important;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+  width: 8px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+  background: #c1c1c1 !important;
+  border-radius: 4px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+html::-webkit-scrollbar-thumb:hover, body::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8 !important;
+}
+
+/* Utility class for elements you want to keep scrollable */
+.keep-scroll {
+  scrollbar-width: auto !important;
+  -ms-overflow-style: scrollbar !important;
+}
+
+.keep-scroll::-webkit-scrollbar {
+  width: 8px !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+/* ===== END SCROLLBAR HIDING SOLUTION ===== */
 
 html {
   scroll-behavior: smooth;
