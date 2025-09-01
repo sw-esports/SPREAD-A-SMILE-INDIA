@@ -972,23 +972,6 @@ function initAccessibility() {
     });
     
     // Skip to main content link
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.textContent = 'Skip to main content';
-    skipLink.className = 'sr-only skip-link';
-    skipLink.style.position = 'absolute';
-    skipLink.style.left = '-9999px';
-    skipLink.addEventListener('focus', () => {
-        skipLink.style.left = '10px';
-        skipLink.style.top = '10px';
-        skipLink.style.zIndex = '10000';
-        skipLink.classList.remove('sr-only');
-    });
-    skipLink.addEventListener('blur', () => {
-        skipLink.style.left = '-9999px';
-        skipLink.classList.add('sr-only');
-    });
-    document.body.insertBefore(skipLink, document.body.firstChild);
 }
 
 /* ===== UTILITY FUNCTIONS ===== */

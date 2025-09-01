@@ -1,4 +1,4 @@
-
+# Spread A Smile India NGO Website
 
 A comprehensive, modern website for **Spread A Smile India NGO**, a Delhi-based charitable organization dedicated to transforming the lives of street children since 2005. Under the leadership of **Sangita Mehra**, the organization has helped over 300 children transition from streets to classrooms.
 

@@ -284,7 +284,6 @@ const volunteerSchema = new mongoose.Schema({
 - Semantic HTML structure
 - ARIA labels and descriptions
 - Live regions for dynamic content
-- Skip links for main content
 
 ## 🚀 Performance Optimization
 
