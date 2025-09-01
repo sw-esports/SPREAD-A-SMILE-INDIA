@@ -1428,7 +1428,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .social-links .social-link:hover {
-    background: var(--primary-color);
+    /* Removed orange background to allow platform-specific colors */
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);

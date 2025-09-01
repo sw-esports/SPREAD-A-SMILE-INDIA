@@ -51,6 +51,7 @@ const contactRoutes = require('./routes/contact');
 const footerPagesRoutes = require('./routes/footer-pages');
 const apiRoutes = require('./routes/api');
 const candleShopRoutes = require('./routes/candle-shop');
+const authRoutes = require('./routes/auth');
 
 // Use routes
 app.use('/', indexRoutes);
@@ -61,6 +62,7 @@ app.use('/get-involved', getInvolvedRoutes);
 app.use('/media', mediaRoutes);
 app.use('/contact', contactRoutes);
 app.use('/candle-shop', candleShopRoutes); // Candle e-commerce section
+app.use('/auth', authRoutes); // Authentication routes
 app.use('/', footerPagesRoutes); // FAQ, legal, etc.
 app.use('/api', apiRoutes); // API endpoints
 

@@ -456,7 +456,7 @@
 .social-link:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    background: var(--primary-orange);
+    /* Removed orange background to allow platform-specific colors */
     color: white;
 }
 

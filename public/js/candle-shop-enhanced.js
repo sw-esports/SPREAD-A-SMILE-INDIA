@@ -78,65 +78,9 @@ function showAllVideos() {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize candle shop functionality
-    candleShop = {
-        // Core e-commerce functionality
-        cart: JSON.parse(localStorage.getItem('candleCart') || '{}'),
-        currentSlide: 0,
-        featuredSlide: 0,
-        isScrollingToTop: false,
-        
-        // Initialize all functionality
-        init() {
-            this.initCarousel();
-            this.initFeaturedSlider();
-            this.initFilters();
-            this.initTheme();
-            this.updateCartDisplay();
-            this.initTestimonials();
-            this.initSocialProof();
-            this.initFloatingActions();
-            this.initChat();
-            this.initSearch();
-            this.initNewsletterModal();
-            this.bindEvents();
-            
-            // Load additional features
-            this.loadRecentlyViewed();
-            this.updateCompareCount();
-            
-            console.log('🕯️ Candle Shop Enhanced: All systems ready!');
-        },
-    candleShop.toggleShopSearch();
-}
-
-function toggleShopMobileMenu() {
-    candleShop.toggleMobileMenu();
-}
-
-function playVideo(videoId) {
-    candleShop.playVideo(videoId);
-}
-
-function toggleVideoLike(videoId) {
-    candleShop.toggleVideoLike(videoId);
-}
-
-function shareVideo(videoId) {
-    candleShop.shareVideo(videoId);
-}
-
-function showAllVideos() {
-    candleShop.showAllVideos();
-}
-
-function closeVideoModal() {
-    candleShop.closeVideoModal();
-}
-
-function showUserMenu() {
-    candleShop.toggleUserMenu();
-}
+    // Initialize the shop
+    candleShop = new CandleShop();
+});
 
 class CandleShop {
     constructor() {
@@ -1179,6 +1123,31 @@ candleShop = new CandleShop();
 // Global functions for backwards compatibility
 function toggleShopSearch() {
     candleShop.toggleSearch();
+}
+
+function toggleShopMobileMenu() {
+    candleShop.toggleMobileMenu();
+}
+
+function showUserMenu() {
+    candleShop.toggleUserMenu();
+}
+
+function toggleTheme() {
+    candleShop.toggleTheme();
+}
+
+function toggleCart() {
+    candleShop.toggleCart();
+}
+
+// Export for use in other scripts
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = CandleShop;
+}// Variable will be initialized in the DOMContentLoaded event
+// Global functions for backwards compatibility
+function toggleShopSearch() {
+    candleShop.toggleShopSearch();
 }
 
 function toggleShopMobileMenu() {

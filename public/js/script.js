@@ -1,7 +1,9 @@
 // Enhanced JavaScript with GSAP animations and micro-interactions
 
-// Initialize GSAP
-gsap.registerPlugin(ScrollTrigger);
+// Initialize GSAP (check if available)
+if (typeof gsap !== 'undefined' && gsap.registerPlugin) {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 // Enhanced theme toggle functionality with localStorage persistence
 function toggleTheme() {
