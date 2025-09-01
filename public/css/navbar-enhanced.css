@@ -672,6 +672,11 @@
 }
 
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 15px;
+        height: 70px;
+    }
+    
     .nav-center {
         position: fixed;
         top: 70px;
@@ -684,6 +689,11 @@
         z-index: 999;
         max-height: calc(100vh - 70px);
         overflow-y: auto;
+        width: 100%;
+        overflow-x: hidden;
+        transform: translateX(100%);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0;
     }
     
     [data-theme="dark"] .nav-center {
@@ -696,6 +706,7 @@
         padding: 1rem;
         gap: 0;
         width: 100%;
+        overflow-x: hidden;
     }
     
     .nav-item {
@@ -705,10 +716,21 @@
     .nav-link {
         width: 100%;
         justify-content: flex-start;
-        padding: 1rem;
+        padding: 0.8rem 1rem;
         border-radius: 12px;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        font-size: 0.95rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    .logo-title {
+        font-size: 1.3rem;
+    }
+    
+    .logo-subtitle {
+        font-size: 0.7rem;
     }
     
     .nav-center.active {
@@ -2295,9 +2317,11 @@
 /* MOBILE SIDEBAR FIX - Force visibility of all navigation elements */
 @media (max-width: 650px) {
     .nav-center.active {
+        display: block !important;
         right: 0 !important;
         visibility: visible !important;
-        display: flex !important;
+        opacity: 1 !important;
+        transform: translateX(0) !important;
     }
     
     .nav-center.active .nav-menu {

@@ -789,17 +789,24 @@ function toggleShopSearch() {
 }
 
 function toggleShopMobileMenu() {
-    if (window.candleShop && window.candleShop.toggleMobileMenu) {
-        window.candleShop.toggleMobileMenu();
-    } else {
-        console.log('CandleShop not ready yet, trying to toggle mobile menu...');
-        // Fallback mobile menu toggle
-        const mobileMenu = document.querySelector('.shop-nav-links');
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        if (mobileMenu && menuBtn) {
-            mobileMenu.classList.toggle('mobile-active');
-            menuBtn.classList.toggle('active');
+    console.log('🍔 Shop mobile menu toggle called');
+    const mobileMenu = document.querySelector('.shop-nav-links');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    
+    if (mobileMenu && menuBtn) {
+        mobileMenu.classList.toggle('mobile-active');
+        menuBtn.classList.toggle('active');
+        
+        // Prevent body scroll when menu is open
+        if (mobileMenu.classList.contains('mobile-active')) {
+            document.body.style.overflow = 'hidden';
+            console.log('✅ Mobile menu opened');
+        } else {
+            document.body.style.overflow = '';
+            console.log('❌ Mobile menu closed');
         }
+    } else {
+        console.log('❌ Mobile menu elements not found:', { mobileMenu, menuBtn });
     }
 }
 
@@ -815,6 +822,50 @@ function showUserMenu() {
         }
     }
 }
+
+// Enhanced cart toggle function
+function toggleCart() {
+    console.log('🛒 Cart toggle called');
+    const cartSidebar = document.querySelector('.cart-sidebar');
+    
+    if (cartSidebar) {
+        cartSidebar.classList.toggle('active');
+        
+        // Prevent body scroll when cart is open
+        if (cartSidebar.classList.contains('active')) {
+            document.body.style.overflow = 'hidden';
+            console.log('✅ Cart opened');
+        } else {
+            document.body.style.overflow = '';
+            console.log('❌ Cart closed');
+        }
+    } else {
+        console.log('❌ Cart sidebar not found');
+    }
+}
+
+// Close mobile menu and cart when clicking outside
+document.addEventListener('click', function(e) {
+    const mobileMenu = document.querySelector('.shop-nav-links');
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const cartSidebar = document.querySelector('.cart-sidebar');
+    const cartToggle = document.querySelector('.cart-toggle');
+    
+    // Close mobile menu if clicking outside
+    if (mobileMenu && mobileMenu.classList.contains('mobile-active') && 
+        !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+        mobileMenu.classList.remove('mobile-active');
+        menuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Close cart if clicking outside
+    if (cartSidebar && cartSidebar.classList.contains('active') && 
+        !cartSidebar.contains(e.target) && !cartToggle.contains(e.target)) {
+        cartSidebar.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
 
 // Video functions
 function playVideo(videoId) {

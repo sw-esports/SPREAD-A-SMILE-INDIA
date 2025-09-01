@@ -2,7 +2,8 @@
 <html lang="en" data-theme="<%= theme %>">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
     <title><%= title %></title>
     
     <!-- SEO Meta Tags -->
@@ -80,11 +81,13 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/components.css">
     <link rel="stylesheet" href="/css/navbar-enhanced.css">
+    <link rel="stylesheet" href="/css/mobile-responsive.css">
     <% if (page === 'home') { %>
     <link rel="stylesheet" href="/css/homepage.css">
     <% } %>
     
     <!-- Performance & Accessibility Scripts -->
+    <script src="/js/mobile-optimizer.js" defer></script>
     <script src="/js/performance-optimizer.js" defer></script>
     <script src="/js/accessibility-enhancer.js" defer></script>
     <script src="/js/error-handler.js" defer></script>
@@ -197,7 +200,7 @@
                 <!-- Right Actions -->
                 <div class="nav-actions" data-aos="fade-left">
                     <!-- Search Button -->
-                    <button class="search-btn" onclick="openSearchModal()" aria-label="Search website" title="Search (Ctrl+K)">
+                    <button class="search-btn mobile-hide" onclick="openSearchModal()" aria-label="Search website" title="Search (Ctrl+K)">
                         <i class="fas fa-search"></i>
                     </button>
                     

@@ -346,20 +346,26 @@ function addNewRippleAnimation() {
 
 // Simple mobile menu toggle for clean right-side sidebar
 function toggleMobileMenu() {
+    console.log('🍔 toggleMobileMenu called');
     const navCenter = document.querySelector('.nav-center');
     const toggleBtn = document.querySelector('.mobile-menu-toggle');
     
-    if (!navCenter || !toggleBtn) return;
+    if (!navCenter || !toggleBtn) {
+        console.log('❌ Mobile menu elements not found:', { navCenter, toggleBtn });
+        return;
+    }
     
     // Toggle active classes
     toggleBtn.classList.toggle('active');
     navCenter.classList.toggle('active');
     
     const isActive = navCenter.classList.contains('active');
+    console.log('📱 Mobile menu toggled:', isActive);
     
     if (isActive) {
         // Show sidebar with animation
         document.body.style.overflow = 'hidden'; // Prevent body scroll
+        navCenter.style.display = 'block'; // Ensure it's visible
         
         // Animate menu items from right with stagger
         if (window.gsap) {
@@ -378,8 +384,12 @@ function toggleMobileMenu() {
     } else {
         // Hide sidebar
         document.body.style.overflow = ''; // Restore body scroll
+        // Don't immediately hide with display:none, let CSS transition handle it
     }
 }
+
+// Make sure the function is globally available
+window.toggleMobileMenu = toggleMobileMenu;
 
 // Close mobile sidebar
 function closeMobileSidebar() {
