@@ -98,7 +98,7 @@ class PerformanceOptimizer {
 
             imageLoader.onerror = () => {
                 // Fallback to placeholder or default image
-                img.src = '/src/images/placeholder.jpg';
+                img.src = '/src/images/logo.png';
                 img.classList.add('error');
                 reject(new Error('Image failed to load'));
             };
@@ -164,8 +164,8 @@ class PerformanceOptimizer {
         // Add error handling to all images
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('error', () => {
-                if (!img.src.includes('placeholder.jpg')) {
-                    img.src = '/src/images/placeholder.jpg';
+                if (!img.src.includes('logo.png')) {
+                    img.src = '/src/images/logo.png';
                     img.classList.add('image-error');
                 }
             });
@@ -179,7 +179,7 @@ class PerformanceOptimizer {
         // Preload critical images
         const criticalImages = [
             '/src/images/logo.png',
-            '/src/images/hero-bg-1.jpg'
+            '/src/images/hero/candleworkshop.png'
         ];
 
         criticalImages.forEach(src => {

@@ -125,7 +125,7 @@ class ErrorHandler {
             
             // Try to load a fallback image
             if (!img.src.includes('placeholder')) {
-                img.src = '/src/images/placeholder.jpg';
+                img.src = '/src/images/logo.png';
             } else {
                 // If even placeholder fails, show a colored div
                 img.style.display = 'none';

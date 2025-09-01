@@ -68,7 +68,7 @@
                        playsinline 
                        preload="metadata"
                        poster="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80">
-                    <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                    <source src="/src/videos/landingpage/landing-page.mp4" type="video/mp4">
                     <track kind="captions" src="/src/videos/captions/landing-page.vtt" srclang="en" label="English">
                     Your browser does not support the video tag.
                 </video>
@@ -308,7 +308,7 @@
             
             <%- include('components/transformation-card', {
                 type: 'video',
-                media: 'https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_1mb.mp4',
+                media: '/src/videos/landingpage/landing-page.mp4',
                 poster: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
                 title: 'Skill Development Programs',
                 caption: 'Vocational training that creates sustainable futures',
@@ -325,7 +325,7 @@
             
             <%- include('components/transformation-card', {
                 type: 'video',
-                media: 'https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_2mb.mp4',
+                media: '/src/videos/summer-camp.mp4',
                 poster: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
                 title: 'Health & Nutrition',
                 caption: 'Comprehensive care for holistic development',
@@ -347,7 +347,7 @@
             <div class="feeds-scroll">
                 <%- include('components/reel-card', {
                     type: 'video',
-                    media: 'https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_1mb.mp4',
+                    media: '/src/videos/landingpage/landing-page.mp4',
                     poster: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
                     caption: 'From street child to college graduate - Priya\'s inspiring journey',
                     likes: 234,
@@ -364,7 +364,7 @@
                 
                 <%- include('components/reel-card', {
                     type: 'video',
-                    media: 'https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_2mb.mp4',
+                    media: '/src/videos/summer-camp.mp4',
                     poster: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
                     caption: 'Free health camp reaching 150+ families in Delhi',
                     likes: 156,
@@ -381,7 +381,7 @@
                 
                 <%- include('components/reel-card', {
                     type: 'video',
-                    media: 'https://sample-videos.com/zip/10/mp4/SampleVideo_640x360_1mb.mp4',
+                    media: '/src/videos/sangeeta-mehara-and-mla-anilshamra-bjp.mp4',
                     poster: 'https://images.unsplash.com/photo-1503914108261-d8ac82d9b4a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
                     caption: 'Children celebrating their first graduation ceremony',
                     likes: 445,
@@ -565,8 +565,7 @@
 </div>
 
 <!-- JavaScript -->
-<script src="./js/landing.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="/js/landing.js"></script>
 <script>
     // Initialize AOS
     AOS.init({

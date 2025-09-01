@@ -1119,19 +1119,6 @@ document.addEventListener('error', (e) => {
     }
 }, true);
 
-// Service Worker registration for offline functionality
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered:', registration);
-            })
-            .catch(error => {
-                console.log('SW registration failed:', error);
-            });
-    });
-}
-
 // Analytics tracking (placeholder)
 function trackEvent(category, action, label) {
     // Google Analytics 4
