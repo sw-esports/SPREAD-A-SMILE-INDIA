@@ -38,28 +38,28 @@
             <!-- Shop Actions -->
             <div class="shop-actions">
                 <!-- Search -->
-                <button class="shop-search-btn mobile-hide" onclick="toggleShopSearch()">
+                <button class="shop-search-btn mobile-hide" onclick="toggleShopSearch()" aria-label="Open search">
                     <i class="fas fa-search"></i>
                 </button>
                 
                 <!-- Cart -->
-                <button class="cart-toggle" onclick="toggleCart()">
+                <button class="cart-toggle" onclick="toggleCart()" aria-label="Open shopping cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
                 </button>
                 
                 <!-- Theme Toggle -->
-                <button class="theme-toggle-btn" onclick="toggleTheme()">
+                <button class="theme-toggle-btn" onclick="toggleTheme()" aria-label="Toggle theme">
                     <i class="fas fa-moon"></i>
                 </button>
                 
                 <!-- User Profile -->
-                <button class="user-profile-btn" onclick="showUserMenu()">
+                <button class="user-profile-btn" onclick="showUserMenu()" aria-label="User menu">
                     <i class="fas fa-user"></i>
                 </button>
                 
                 <!-- Mobile Menu -->
-                <button class="mobile-menu-btn" onclick="toggleShopMobileMenu()">
+                <button class="mobile-menu-btn" onclick="toggleShopMobileMenu()" aria-label="Toggle mobile menu">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -72,10 +72,10 @@
     <div class="shop-search-bar" id="shopSearchBar">
         <div class="search-container">
             <input type="text" id="shopSearchInput" placeholder="Search for candles...">
-            <button class="search-btn">
+            <button class="search-btn" aria-label="Submit search">
                 <i class="fas fa-search"></i>
             </button>
-            <button class="search-close" onclick="toggleShopSearch()">
+            <button class="search-close" onclick="toggleShopSearch()" aria-label="Close search">
                 <i class="fas fa-times"></i>
             </button>
         </div>

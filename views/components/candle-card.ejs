@@ -1,4 +1,9 @@
-<div class="product-card" data-product-id="<%= product.id %>" data-category="<%= product.category %>">
+<div class="product-card" data-prod            <button class="quick-action quick-view" onclick="quickView('<%= product.id %>')" title="Quick View" aria-label="Quick view product">
+                <i class="fas fa-eye"></i>
+            </button>
+            <button class="quick-action add-to-wishlist" onclick="addToWishlist('<%= product.id %>')" title="Add to Wishlist" aria-label="Add to wishlist">
+                <i class="fas fa-heart"></i>
+            </button>="<%= product.id %>" data-category="<%= product.category %>">
     <div class="product-image-container">
         <% if (product.images.length > 1) { %>
             <!-- Product with multiple images - show second on hover -->
@@ -67,7 +72,7 @@
         
         <div class="product-actions">
             <div class="quantity-controls">
-                <button class="qty-btn minus" onclick="changeQuantity('<%= product.id %>', -1)">
+                <button class="qty-btn minus" onclick="changeQuantity('<%= product.id %>', -1)" aria-label="Decrease quantity">
                     <i class="fas fa-minus"></i>
                 </button>
                 <input type="number" 
@@ -77,7 +82,7 @@
                        min="1" 
                        max="<%= product.inStock %>"
                        onchange="validateQuantity('<%= product.id %>')">
-                <button class="qty-btn plus" onclick="changeQuantity('<%= product.id %>', 1)">
+                <button class="qty-btn plus" onclick="changeQuantity('<%= product.id %>', 1)" aria-label="Increase quantity">
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
