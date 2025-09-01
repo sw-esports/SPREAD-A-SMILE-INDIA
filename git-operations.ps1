@@ -1,4 +1,5 @@
 # SPREAD A SMILE INDIA - Git Operations Script
+# Updated to support dynamic branch detection - pushing to current branch instead of hardcoded 'main'
 
 function Show-Header {
     Write-Host "========================================" -ForegroundColor Cyan
@@ -88,8 +89,16 @@ function Quick-Push {
     Write-Host "Committing: $Message" -ForegroundColor Yellow
     git commit -m $Message
     
-    Write-Host "Pushing to GitHub..." -ForegroundColor Yellow
-    git push origin main
+    # Get current branch name
+    $currentBranch = git branch --show-current 2>$null
+    if (-not $currentBranch) {
+        Write-Host "❌ ERROR: Could not determine current branch!" -ForegroundColor Red
+        Read-Host "Press Enter to continue"
+        return
+    }
+    
+    Write-Host "Pushing to GitHub on branch: $currentBranch..." -ForegroundColor Yellow
+    git push origin $currentBranch
     
     Write-Host "Push complete!" -ForegroundColor Green
 }
