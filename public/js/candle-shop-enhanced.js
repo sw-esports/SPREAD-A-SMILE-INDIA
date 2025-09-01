@@ -1,15 +1,17 @@
 /**
  * Enhanced Candle Shop JavaScript Module
- * Handles e-commerce functionality with fixes for cart updates, quick view, and theme support
+ * Comprehensive e-commerce functionality with all modern features
  */
 
 // Global variables
 let candleShop;
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    candleShop = new CandleShop();
-});
+let searchTimeout;
+let testimonialInterval;
+let socialProofInterval;
+let chatMessages = [];
+let recentlyViewed = JSON.parse(localStorage.getItem('recentlyViewed') || '[]');
+let compareList = JSON.parse(localStorage.getItem('compareList') || '[]');
+let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
 
 // Global functions for onclick handlers
 function addToCart(productId, quantity = null) {
@@ -53,6 +55,89 @@ function toggleTheme() {
     candleShop.toggleTheme();
 }
 
+function toggleShopSearch() {
+    candleShop.toggleSearch();
+}
+
+// Video functions
+function playVideo(videoId) {
+    candleShop.playVideo(videoId);
+}
+
+function toggleVideoLike(videoId) {
+    candleShop.toggleVideoLike(videoId);
+}
+
+function shareVideo(videoId) {
+    candleShop.shareVideo(videoId);
+}
+
+function showAllVideos() {
+    candleShop.showAllVideos();
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize candle shop functionality
+    candleShop = {
+        // Core e-commerce functionality
+        cart: JSON.parse(localStorage.getItem('candleCart') || '{}'),
+        currentSlide: 0,
+        featuredSlide: 0,
+        isScrollingToTop: false,
+        
+        // Initialize all functionality
+        init() {
+            this.initCarousel();
+            this.initFeaturedSlider();
+            this.initFilters();
+            this.initTheme();
+            this.updateCartDisplay();
+            this.initTestimonials();
+            this.initSocialProof();
+            this.initFloatingActions();
+            this.initChat();
+            this.initSearch();
+            this.initNewsletterModal();
+            this.bindEvents();
+            
+            // Load additional features
+            this.loadRecentlyViewed();
+            this.updateCompareCount();
+            
+            console.log('🕯️ Candle Shop Enhanced: All systems ready!');
+        },
+    candleShop.toggleShopSearch();
+}
+
+function toggleShopMobileMenu() {
+    candleShop.toggleMobileMenu();
+}
+
+function playVideo(videoId) {
+    candleShop.playVideo(videoId);
+}
+
+function toggleVideoLike(videoId) {
+    candleShop.toggleVideoLike(videoId);
+}
+
+function shareVideo(videoId) {
+    candleShop.shareVideo(videoId);
+}
+
+function showAllVideos() {
+    candleShop.showAllVideos();
+}
+
+function closeVideoModal() {
+    candleShop.closeVideoModal();
+}
+
+function showUserMenu() {
+    candleShop.toggleUserMenu();
+}
+
 class CandleShop {
     constructor() {
         this.cart = JSON.parse(localStorage.getItem('candleShopCart')) || [];
@@ -68,6 +153,7 @@ class CandleShop {
         this.loadCartItems();
         this.initializeTheme();
         this.initializeCarousel();
+        this.initializeVideos();
         this.loadProducts();
     }
 
@@ -257,8 +343,8 @@ class CandleShop {
     toggleCart() {
         const cartSidebar = document.getElementById('cartSidebar');
         if (cartSidebar) {
-            cartSidebar.classList.toggle('open');
-            document.body.style.overflow = cartSidebar.classList.contains('open') ? 'hidden' : 'auto';
+            cartSidebar.classList.toggle('active');
+            document.body.style.overflow = cartSidebar.classList.contains('active') ? 'hidden' : 'auto';
         }
     }
 
@@ -400,6 +486,13 @@ class CandleShop {
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.body.setAttribute('data-theme', savedTheme);
         
+        // Update new theme button icon
+        const themeBtn = document.querySelector('.theme-toggle-btn i');
+        if (themeBtn) {
+            themeBtn.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        // Keep old theme toggle for compatibility
         const themeToggle = document.getElementById('themeToggle');
         if (themeToggle) {
             themeToggle.checked = savedTheme === 'dark';
@@ -416,12 +509,19 @@ class CandleShop {
         localStorage.setItem('spreadasmile-theme', newTheme);
         localStorage.setItem('theme', newTheme);
         
+        // Update theme button icon
+        const themeBtn = document.querySelector('.theme-toggle-btn i');
+        if (themeBtn) {
+            themeBtn.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        
+        // Keep old theme toggle compatible
         const themeToggle = document.getElementById('themeToggle');
         if (themeToggle) {
             themeToggle.checked = newTheme === 'dark';
         }
         
-        this.showNotification(`Switched to ${newTheme} theme`, 'info');
+        this.showNotification(`Switched to ${newTheme} theme`, 'success');
     }
 
     /**
@@ -627,6 +727,57 @@ class CandleShop {
         });
     }
 
+    initializeVideos() {
+        // Load saved like statuses
+        this.loadLikeStatuses();
+        
+        // Add video event listeners
+        const videos = document.querySelectorAll('.video-card video');
+        videos.forEach((video, index) => {
+            const videoCard = video.closest('.video-card');
+            const overlay = videoCard.querySelector('.video-overlay');
+            
+            // Video ended event
+            video.addEventListener('ended', () => {
+                videoCard.classList.remove('playing');
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'auto';
+            });
+            
+            // Video click to pause/play
+            video.addEventListener('click', () => {
+                const videoId = videoCard.dataset.videoId;
+                this.playVideo(videoId);
+            });
+            
+            // Prevent video from playing on hover (mobile optimization)
+            video.addEventListener('loadstart', () => {
+                video.preload = 'metadata';
+            });
+        });
+        
+        // Pause videos when scrolling away
+        this.setupVideoVisibilityHandler();
+    }
+
+    setupVideoVisibilityHandler() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target.querySelector('video');
+                if (video && !entry.isIntersecting && !video.paused) {
+                    const videoId = entry.target.dataset.videoId;
+                    this.playVideo(videoId); // This will pause it since it's playing
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+        
+        document.querySelectorAll('.video-card').forEach(card => {
+            observer.observe(card);
+        });
+    }
+
     filterProducts(searchTerm) {
         const productCards = document.querySelectorAll('.product-card');
         productCards.forEach(card => {
@@ -689,6 +840,361 @@ class CandleShop {
             }, 500);
         }
     }
+
+    toggleShopSearch() {
+        const searchBar = document.getElementById('shopSearchBar');
+        const searchInput = document.getElementById('shopSearchInput');
+        
+        if (searchBar) {
+            searchBar.classList.toggle('active');
+            if (searchBar.classList.contains('active') && searchInput) {
+                searchInput.focus();
+            }
+        }
+    }
+
+    toggleMobileMenu() {
+        const mobileMenu = document.querySelector('.shop-nav-links');
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        
+        if (mobileMenu && menuBtn) {
+            mobileMenu.classList.toggle('mobile-active');
+            menuBtn.classList.toggle('active');
+        }
+    }
+
+    /**
+     * Video Showcase Functions
+     */
+    playVideo(videoId) {
+        const videoCard = document.querySelector(`[data-video-id="${videoId}"]`);
+        const video = videoCard.querySelector('video');
+        const overlay = videoCard.querySelector('.video-overlay');
+        
+        if (video && overlay) {
+            if (video.paused) {
+                // Pause all other videos
+                this.pauseAllVideos();
+                
+                // Play this video
+                video.play().then(() => {
+                    videoCard.classList.add('playing');
+                    overlay.style.opacity = '0';
+                    overlay.style.pointerEvents = 'none';
+                }).catch(error => {
+                    console.error('Error playing video:', error);
+                    this.showNotification('Unable to play video', 'error');
+                });
+            } else {
+                video.pause();
+                videoCard.classList.remove('playing');
+                overlay.style.opacity = '1';
+                overlay.style.pointerEvents = 'auto';
+            }
+        }
+    }
+
+    pauseAllVideos() {
+        const allVideos = document.querySelectorAll('.video-card video');
+        const allCards = document.querySelectorAll('.video-card');
+        const allOverlays = document.querySelectorAll('.video-overlay');
+        
+        allVideos.forEach((video, index) => {
+            if (!video.paused) {
+                video.pause();
+                allCards[index].classList.remove('playing');
+                allOverlays[index].style.opacity = '1';
+                allOverlays[index].style.pointerEvents = 'auto';
+            }
+        });
+    }
+
+    toggleVideoLike(videoId) {
+        const videoCard = document.querySelector(`[data-video-id="${videoId}"]`);
+        const likeBtn = videoCard.querySelector('.like-btn');
+        const likeIcon = likeBtn.querySelector('i');
+        const likeCount = likeBtn.querySelector('.like-count');
+        
+        if (likeBtn && likeIcon && likeCount) {
+            const isLiked = likeBtn.classList.contains('liked');
+            let currentCount = parseInt(likeCount.textContent);
+            
+            if (isLiked) {
+                // Unlike
+                likeBtn.classList.remove('liked');
+                likeIcon.className = 'far fa-heart';
+                likeCount.textContent = currentCount - 1;
+                this.showNotification('Removed from favorites', 'info');
+            } else {
+                // Like
+                likeBtn.classList.add('liked');
+                likeIcon.className = 'fas fa-heart';
+                likeCount.textContent = currentCount + 1;
+                this.showNotification('Added to favorites!', 'success');
+                
+                // Add heart animation
+                this.animateHeart(likeBtn);
+            }
+            
+            // Save like status to localStorage
+            this.saveLikeStatus(videoId, !isLiked);
+        }
+    }
+
+    animateHeart(likeBtn) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '<i class="fas fa-heart"></i>';
+        heart.style.cssText = `
+            position: absolute;
+            color: #ff4757;
+            font-size: 1.5rem;
+            pointer-events: none;
+            animation: heartFloat 1s ease-out forwards;
+            z-index: 1000;
+        `;
+        
+        // Add heart float animation if not exists
+        if (!document.querySelector('#heartFloatStyle')) {
+            const style = document.createElement('style');
+            style.id = 'heartFloatStyle';
+            style.textContent = `
+                @keyframes heartFloat {
+                    0% { transform: translateY(0) scale(1); opacity: 1; }
+                    100% { transform: translateY(-30px) scale(1.5); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        likeBtn.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
+    }
+
+    shareVideo(videoId) {
+        const videoCard = document.querySelector(`[data-video-id="${videoId}"]`);
+        const videoTitle = videoCard.querySelector('.video-info h4').textContent;
+        const currentUrl = window.location.href;
+        
+        if (navigator.share) {
+            // Use native sharing if available
+            navigator.share({
+                title: `${videoTitle} - SASI Candles Workshop`,
+                text: 'Check out this amazing candle-making process from SASI!',
+                url: `${currentUrl}#video-${videoId}`
+            }).then(() => {
+                this.showNotification('Video shared successfully!', 'success');
+            }).catch(error => {
+                console.log('Error sharing:', error);
+                this.fallbackShare(videoTitle, currentUrl, videoId);
+            });
+        } else {
+            this.fallbackShare(videoTitle, currentUrl, videoId);
+        }
+    }
+
+    fallbackShare(title, url, videoId) {
+        // Fallback sharing options
+        const shareModal = document.createElement('div');
+        shareModal.className = 'share-modal';
+        shareModal.innerHTML = `
+            <div class="share-modal-content">
+                <div class="share-header">
+                    <h3>Share Video</h3>
+                    <button class="share-close" onclick="this.closest('.share-modal').remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="share-options">
+                    <button onclick="candleShop.shareToWhatsApp('${title}', '${url}#video-${videoId}')">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                    <button onclick="candleShop.shareToFacebook('${url}#video-${videoId}')">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </button>
+                    <button onclick="candleShop.copyToClipboard('${url}#video-${videoId}')">
+                        <i class="fas fa-copy"></i> Copy Link
+                    </button>
+                </div>
+            </div>
+        `;
+        
+        // Add share modal styles if not exists
+        if (!document.querySelector('#shareModalStyle')) {
+            const style = document.createElement('style');
+            style.id = 'shareModalStyle';
+            style.textContent = `
+                .share-modal {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.7);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                }
+                .share-modal-content {
+                    background: var(--shop-bg-primary);
+                    border-radius: var(--shop-radius-lg);
+                    padding: 2rem;
+                    max-width: 400px;
+                    width: 90%;
+                }
+                .share-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1.5rem;
+                }
+                .share-close {
+                    background: none;
+                    border: none;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    color: var(--shop-text-secondary);
+                }
+                .share-options {
+                    display: grid;
+                    gap: 1rem;
+                }
+                .share-options button {
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--shop-border);
+                    background: var(--shop-bg-secondary);
+                    border-radius: var(--shop-radius-md);
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    transition: var(--shop-transition);
+                }
+                .share-options button:hover {
+                    background: var(--shop-primary);
+                    color: white;
+                    border-color: var(--shop-primary);
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        document.body.appendChild(shareModal);
+    }
+
+    shareToWhatsApp(title, url) {
+        const message = encodeURIComponent(`Check out this amazing video: ${title} ${url}`);
+        window.open(`https://wa.me/?text=${message}`, '_blank');
+        document.querySelector('.share-modal')?.remove();
+    }
+
+    shareToFacebook(url) {
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        document.querySelector('.share-modal')?.remove();
+    }
+
+    copyToClipboard(url) {
+        navigator.clipboard.writeText(url).then(() => {
+            this.showNotification('Link copied to clipboard!', 'success');
+            document.querySelector('.share-modal')?.remove();
+        }).catch(() => {
+            this.showNotification('Failed to copy link', 'error');
+        });
+    }
+
+    showAllVideos() {
+        this.showNotification('Feature coming soon!', 'info');
+        // This could open a dedicated videos page or modal
+    }
+
+    closeVideoModal() {
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        
+        if (modal && modalVideo) {
+            modal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        }
+    }
+
+    toggleUserMenu() {
+        const userMenu = document.getElementById('userMenuDropdown');
+        
+        if (userMenu) {
+            const isActive = userMenu.classList.contains('active');
+            
+            // Close all other dropdowns first
+            document.querySelectorAll('.user-menu-dropdown.active').forEach(dropdown => {
+                dropdown.classList.remove('active');
+            });
+            
+            // Toggle this dropdown
+            if (!isActive) {
+                userMenu.classList.add('active');
+                
+                // Add click outside listener
+                setTimeout(() => {
+                    document.addEventListener('click', this.handleClickOutside.bind(this));
+                }, 10);
+            }
+        }
+    }
+    
+    handleClickOutside(event) {
+        const userMenu = document.getElementById('userMenuDropdown');
+        const userBtn = document.querySelector('.user-profile-btn');
+        
+        if (userMenu && !userMenu.contains(event.target) && !userBtn.contains(event.target)) {
+            userMenu.classList.remove('active');
+            document.removeEventListener('click', this.handleClickOutside.bind(this));
+        }
+    }
+
+    saveLikeStatus(videoId, isLiked) {
+        const likes = JSON.parse(localStorage.getItem('videoLikes') || '{}');
+        likes[videoId] = isLiked;
+        localStorage.setItem('videoLikes', JSON.stringify(likes));
+    }
+
+    loadLikeStatuses() {
+        const likes = JSON.parse(localStorage.getItem('videoLikes') || '{}');
+        Object.keys(likes).forEach(videoId => {
+            if (likes[videoId]) {
+                const videoCard = document.querySelector(`[data-video-id="${videoId}"]`);
+                if (videoCard) {
+                    const likeBtn = videoCard.querySelector('.like-btn');
+                    const likeIcon = likeBtn.querySelector('i');
+                    likeBtn.classList.add('liked');
+                    likeIcon.className = 'fas fa-heart';
+                }
+            }
+        });
+    }
+}
+
+// Initialize the candle shop (remove let declaration from top)
+candleShop = new CandleShop();
+
+// Global functions for backwards compatibility
+function toggleShopSearch() {
+    candleShop.toggleSearch();
+}
+
+function toggleShopMobileMenu() {
+    candleShop.toggleMobileMenu();
+}
+
+function showUserMenu() {
+    candleShop.toggleUserMenu();
+}
+
+function toggleTheme() {
+    candleShop.toggleTheme();
+}
+
+function toggleCart() {
+    candleShop.toggleCart();
 }
 
 // Export for use in other scripts

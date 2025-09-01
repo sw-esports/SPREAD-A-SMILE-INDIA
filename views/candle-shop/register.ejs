@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="<%= theme %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="<%= metaDescription %>">
+    <meta name="keywords" content="register, create account, SASI candles">
+    <meta name="author" content="Spread A Smile India">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/src/icons/apple-icon-180x180.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/candle-shop.css">
+    
+    <!-- Enhanced Candle Shop Scripts -->
+    <script src="/js/candle-shop-enhanced.js" defer></script>
+</head>
+<body>
+    <!-- Candle Shop Navigation -->
+    <header class="shop-header">
+        <nav class="shop-navbar">
+            <div class="shop-nav-container">
+                <!-- Logo Section -->
+                <div class="shop-logo">
+                    <a href="/candle-shop" class="logo-link">
+                        <div class="logo-icon">
+                            <i class="fas fa-fire-flame-curved"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>SASI Candles</h1>
+                            <span>Handcrafted for a Cause</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="shop-nav-links">
+                    <a href="/candle-shop" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Shop
+                    </a>
+                    <a href="/candle-shop/collections" class="nav-link">
+                        <i class="fas fa-layer-group"></i>
+                        Collections
+                    </a>
+                    <a href="/about" class="nav-link">
+                        <i class="fas fa-heart"></i>
+                        Our Story
+                    </a>
+                    <a href="/" class="nav-link back-to-main">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to SASI
+                    </a>
+                </div>
+                
+                <!-- Shop Actions -->
+                <div class="shop-actions">
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle-btn" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- User Profile -->
+                    <button class="user-profile-btn" onclick="candleShop.toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu -->
+                    <button class="mobile-menu-btn" onclick="toggleShopMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- User Menu Dropdown -->
+    <div class="user-menu-dropdown" id="userMenuDropdown">
+        <div class="user-menu-content">
+            <div class="user-menu-header">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h4>Welcome!</h4>
+                    <p>Guest User</p>
+                </div>
+            </div>
+            <div class="user-menu-items">
+                <a href="/candle-shop/account" class="user-menu-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>My Account</span>
+                </a>
+                <a href="/candle-shop/orders" class="user-menu-item">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>My Orders</span>
+                </a>
+                <a href="/candle-shop/wishlist" class="user-menu-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="/candle-shop/settings" class="user-menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <div class="user-menu-divider"></div>
+                <a href="/candle-shop/login" class="user-menu-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="/candle-shop/register" class="user-menu-item">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-overlay" onclick="toggleCart()"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <small>Add some beautiful candles to get started!</small>
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">₹0</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping:</span>
+                        <span id="cartShipping">Free</span>
+                    </div>
+                    <div class="total-row total-final">
+                        <span>Total:</span>
+                        <span id="cartTotal">₹0</span>
+                    </div>
+                </div>
+                
+                <div class="cart-actions">
+                    <a href="/candle-shop/cart" class="btn btn-outline">View Cart</a>
+                    <a href="/candle-shop/checkout" class="btn btn-primary">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="auth-main">
+        <div class="auth-container">
+            <div class="auth-content">
+                <!-- Left Side - Welcome -->
+                <div class="auth-welcome">
+                    <div class="welcome-content">
+                        <div class="auth-logo">
+                            <div class="logo-icon">
+                                <i class="fas fa-fire-flame-curved"></i>
+                            </div>
+                            <h2>Join Our Community!</h2>
+                        </div>
+                        <p>Create your SASI Candles account and become part of our mission to transform lives through beautiful handcrafted candles.</p>
+                        <div class="auth-features">
+                            <div class="feature">
+                                <i class="fas fa-gift"></i>
+                                <span>Exclusive member discounts</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free shipping on orders</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-heart-circle-plus"></i>
+                                <span>Support a great cause</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Register Form -->
+                <div class="auth-form-section">
+                    <div class="auth-form-container">
+                        <div class="auth-header">
+                            <h1>Create Your Account</h1>
+                            <p>Join thousands of customers supporting our cause</p>
+                        </div>
+
+                        <form class="auth-form" id="registerForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <div class="input-group">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="firstName" name="firstName" required placeholder="First name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <div class="input-group">
+                                        <i class="fas fa-user"></i>
+                                        <input type="text" id="lastName" name="lastName" required placeholder="Last name">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <div class="input-group">
+                                    <i class="fas fa-envelope"></i>
+                                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <div class="input-group">
+                                    <i class="fas fa-phone"></i>
+                                    <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="password" name="password" required placeholder="Create a password">
+                                    <button type="button" class="password-toggle" onclick="togglePassword('password', 'passwordToggleIcon')">
+                                        <i class="fas fa-eye" id="passwordToggleIcon"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength">
+                                    <div class="strength-bars">
+                                        <div class="strength-bar"></div>
+                                        <div class="strength-bar"></div>
+                                        <div class="strength-bar"></div>
+                                        <div class="strength-bar"></div>
+                                    </div>
+                                    <span class="strength-text">Password strength</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <div class="input-group">
+                                    <i class="fas fa-lock"></i>
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                                    <button type="button" class="password-toggle" onclick="togglePassword('confirmPassword', 'confirmPasswordToggleIcon')">
+                                        <i class="fas fa-eye" id="confirmPasswordToggleIcon"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="newsletter" id="newsletter" checked>
+                                    <span class="checkmark"></span>
+                                    Subscribe to our newsletter for updates and exclusive offers
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="terms" id="terms" required>
+                                    <span class="checkmark"></span>
+                                    I agree to the <a href="/terms" target="_blank">Terms & Conditions</a> and <a href="/privacy" target="_blank">Privacy Policy</a>
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full">
+                                <i class="fas fa-user-plus"></i>
+                                Create Account
+                            </button>
+                        </form>
+
+                        <div class="auth-divider">
+                            <span>or</span>
+                        </div>
+
+                        <div class="social-login">
+                            <button class="btn btn-social btn-google">
+                                <i class="fab fa-google"></i>
+                                Sign up with Google
+                            </button>
+                            <button class="btn btn-social btn-facebook">
+                                <i class="fab fa-facebook-f"></i>
+                                Sign up with Facebook
+                            </button>
+                        </div>
+
+                        <div class="auth-footer">
+                            <p>Already have an account? <a href="/candle-shop/login">Login Here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="shop-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section footer-brand">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-fire-flame-curved"></i>
+                        </div>
+                        <h3>SASI Candles</h3>
+                    </div>
+                    <p>Handcrafted candles made by our beneficiaries. Every purchase supports our mission to transform lives through education and empowerment.</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/spreadasmileindia" target="_blank" rel="noopener noreferrer" class="social-link" title="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://facebook.com/spreadasmileindia" target="_blank" rel="noopener noreferrer" class="social-link" title="Like us on Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="social-link" title="Contact us on WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://youtube.com/@spreadasmileindia" target="_blank" rel="noopener noreferrer" class="social-link" title="Subscribe to our YouTube channel">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-shopping-bag"></i> Shop</h4>
+                    <ul>
+                        <li><a href="/candle-shop">All Candles</a></li>
+                        <li><a href="/candle-shop/collections">Collections</a></li>
+                        <li><a href="/candle-shop/new-arrivals">New Arrivals</a></li>
+                        <li><a href="/candle-shop/bestsellers">Best Sellers</a></li>
+                        <li><a href="/candle-shop/gifts">Gift Sets</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-heart"></i> About SASI</h4>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/about/mission">Our Mission</a></li>
+                        <li><a href="/about/founder">Our Founder</a></li>
+                        <li><a href="/about/team">Our Team</a></li>
+                        <li><a href="/">Main Website</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4><i class="fas fa-headset"></i> Support</h4>
+                    <ul>
+                        <li><a href="/impact/stories">Impact Stories</a></li>
+                        <li><a href="/programs">Our Programs</a></li>
+                        <li><a href="/get-involved">Get Involved</a></li>
+                        <li><a href="/media">Media & Press</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h4><i class="fas fa-envelope"></i> Stay Connected</h4>
+                    <p>Subscribe to get updates on new arrivals and exclusive offers!</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" class="newsletter-input">
+                        <button class="newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>shop@spreadasmileindia.org</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Spread A Smile India. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="/privacy">Privacy Policy</a>
+                        <a href="/terms">Terms of Service</a>
+                        <a href="/refund">Refund Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function togglePassword(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const toggleIcon = document.getElementById(iconId);
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+
+        // Password strength checker
+        document.getElementById('password').addEventListener('input', function(e) {
+            const password = e.target.value;
+            const strengthBars = document.querySelectorAll('.strength-bar');
+            const strengthText = document.querySelector('.strength-text');
+            
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/)) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            strengthBars.forEach((bar, index) => {
+                bar.classList.remove('weak', 'medium', 'strong', 'very-strong');
+                if (index < strength) {
+                    if (strength <= 2) bar.classList.add('weak');
+                    else if (strength === 3) bar.classList.add('medium');
+                    else if (strength === 4) bar.classList.add('strong');
+                    else bar.classList.add('very-strong');
+                }
+            });
+            
+            const strengthLabels = ['Very Weak', 'Weak', 'Fair', 'Good', 'Strong'];
+            strengthText.textContent = strengthLabels[Math.max(0, strength - 1)] || 'Password strength';
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Add registration logic here
+            alert('Registration functionality will be implemented soon!');
+        });
+    </script>
+</body>
+</html>

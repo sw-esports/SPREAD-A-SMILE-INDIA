@@ -321,6 +321,82 @@ router.get('/checkout', (req, res) => {
     });
 });
 
+// Collections page
+router.get('/collections', (req, res) => {
+    res.render('candle-shop/collections', {
+        title: 'Collections - Candle Shop',
+        page: 'candle-shop',
+        theme: req.session.theme || 'light',
+        products: candleProducts,
+        metaDescription: 'Browse our curated collections of handcrafted candles.',
+        currentPath: '/candle-shop/collections'
+    });
+});
+
+// Login page
+router.get('/login', (req, res) => {
+    res.render('candle-shop/login', {
+        title: 'Login - Candle Shop',
+        page: 'candle-shop',
+        theme: req.session.theme || 'light',
+        metaDescription: 'Login to your SASI Candles account.',
+        currentPath: '/candle-shop/login'
+    });
+});
+
+// Register page
+router.get('/register', (req, res) => {
+    res.render('candle-shop/register', {
+        title: 'Register - Candle Shop',
+        page: 'candle-shop',
+        theme: req.session.theme || 'light',
+        metaDescription: 'Create your SASI Candles account.',
+        currentPath: '/candle-shop/register'
+    });
+});
+
+// Account pages
+router.get('/account', (req, res) => {
+    res.render('candle-shop/account', {
+        title: 'My Account - Candle Shop',
+        page: 'candle-shop',
+        theme: req.session.theme || 'light',
+        metaDescription: 'Manage your account settings and information.',
+        currentPath: '/candle-shop/account'
+    });
+});
+
+router.get('/orders', (req, res) => {
+    res.render('candle-shop/orders', {
+        title: 'My Orders - Candle Shop',
+        page: 'candle-shop',
+        theme: req.session.theme || 'light',
+        metaDescription: 'View your order history and track current orders.',
+        currentPath: '/candle-shop/orders'
+    });
+});
+
+router.get('/wishlist', (req, res) => {
+    res.render('candle-shop/wishlist', {
+        title: 'My Wishlist - Candle Shop',
+        page: 'candle-shop',
+        theme: req.session.theme || 'light',
+        products: candleProducts,
+        metaDescription: 'View and manage your saved candles.',
+        currentPath: '/candle-shop/wishlist'
+    });
+});
+
+router.get('/settings', (req, res) => {
+    res.render('candle-shop/settings', {
+        title: 'Settings - Candle Shop',
+        page: 'candle-shop',
+        theme: req.session.theme || 'light',
+        metaDescription: 'Manage your account preferences and settings.',
+        currentPath: '/candle-shop/settings'
+    });
+});
+
 // API endpoints for cart functionality
 router.post('/api/add-to-cart', (req, res) => {
     try {

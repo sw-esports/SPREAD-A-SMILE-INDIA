@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="<%= theme %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="<%= metaDescription %>">
+    <meta name="keywords" content="candle collections, handcrafted candles, artisan candles, NGO products">
+    <meta name="author" content="Spread A Smile India">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://spreadasmileindia.org<%= currentPath %>">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/src/icons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/src/icons/apple-icon-180x180.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/candle-shop.css">
+    
+    <!-- Enhanced Candle Shop Scripts -->
+    <script src="/js/candle-shop-enhanced.js" defer></script>
+</head>
+<body>
+    <!-- Candle Shop Navigation -->
+    <header class="shop-header">
+        <nav class="shop-navbar">
+            <div class="shop-nav-container">
+                <!-- Logo Section -->
+                <div class="shop-logo">
+                    <a href="/candle-shop" class="logo-link">
+                        <div class="logo-icon">
+                            <i class="fas fa-fire-flame-curved"></i>
+                        </div>
+                        <div class="logo-text">
+                            <h1>SASI Candles</h1>
+                            <span>Handcrafted for a Cause</span>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Navigation Links -->
+                <div class="shop-nav-links">
+                    <a href="/candle-shop" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Shop
+                    </a>
+                    <a href="/candle-shop/collections" class="nav-link active">
+                        <i class="fas fa-layer-group"></i>
+                        Collections
+                    </a>
+                    <a href="/about" class="nav-link">
+                        <i class="fas fa-heart"></i>
+                        Our Story
+                    </a>
+                    <a href="/" class="nav-link back-to-main">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to SASI
+                    </a>
+                </div>
+                
+                <!-- Shop Actions -->
+                <div class="shop-actions">
+                    <!-- Search -->
+                    <button class="shop-search-btn" onclick="toggleShopSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    
+                    <!-- Cart -->
+                    <button class="cart-toggle" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </button>
+                    
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle-btn" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <!-- User Profile -->
+                    <button class="user-profile-btn" onclick="candleShop.toggleUserMenu()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    
+                    <!-- Mobile Menu -->
+                    <button class="mobile-menu-btn" onclick="toggleShopMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- User Menu Dropdown -->
+    <div class="user-menu-dropdown" id="userMenuDropdown">
+        <div class="user-menu-content">
+            <div class="user-menu-header">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-info">
+                    <h4>Welcome!</h4>
+                    <p>Guest User</p>
+                </div>
+            </div>
+            <div class="user-menu-items">
+                <a href="/candle-shop/account" class="user-menu-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>My Account</span>
+                </a>
+                <a href="/candle-shop/orders" class="user-menu-item">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>My Orders</span>
+                </a>
+                <a href="/candle-shop/wishlist" class="user-menu-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Wishlist</span>
+                </a>
+                <a href="/candle-shop/settings" class="user-menu-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </a>
+                <div class="user-menu-divider"></div>
+                <a href="/candle-shop/login" class="user-menu-item">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Login</span>
+                </a>
+                <a href="/candle-shop/register" class="user-menu-item">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Sign Up</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-overlay" onclick="toggleCart()"></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <button class="cart-close" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <small>Add some beautiful candles to get started!</small>
+                </div>
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <div class="total-row">
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">₹0</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping:</span>
+                        <span id="cartShipping">Free</span>
+                    </div>
+                    <div class="total-row total-final">
+                        <span>Total:</span>
+                        <span id="cartTotal">₹0</span>
+                    </div>
+                </div>
+                
+                <div class="cart-actions">
+                    <a href="/candle-shop/cart" class="btn btn-outline">View Cart</a>
+                    <a href="/candle-shop/checkout" class="btn btn-primary">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="collections-main">
+        <!-- Hero Section -->
+        <section class="collections-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Our Collections</h1>
+                    <p>Discover our curated collections of handcrafted candles, each telling a unique story of artisanal craftsmanship and social impact.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Collections Grid -->
+        <section class="collections-grid">
+            <div class="container">
+                <div class="grid">
+                    <!-- Classic Collection -->
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="/src/images/shop/candles/1redcandle.png" alt="Classic Collection" loading="lazy">
+                        </div>
+                        <div class="collection-content">
+                            <h3>Classic Collection</h3>
+                            <p>Timeless designs that never go out of style, perfect for any home.</p>
+                            <div class="collection-stats">
+                                <span><%= products.filter(p => p.category === 'classic').length %> Products</span>
+                                <span>From ₹199</span>
+                            </div>
+                            <a href="#classic" class="btn btn-outline">Explore Collection</a>
+                        </div>
+                    </div>
+
+                    <!-- Luxury Collection -->
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="/src/images/shop/candles/big-glass-cup-candle.png" alt="Luxury Collection" loading="lazy">
+                        </div>
+                        <div class="collection-content">
+                            <h3>Luxury Collection</h3>
+                            <p>Premium candles with sophisticated designs and premium materials.</p>
+                            <div class="collection-stats">
+                                <span><%= products.filter(p => p.category === 'luxury').length %> Products</span>
+                                <span>From ₹449</span>
+                            </div>
+                            <a href="#luxury" class="btn btn-outline">Explore Collection</a>
+                        </div>
+                    </div>
+
+                    <!-- Designer Collection -->
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="/src/images/shop/candles/setof4-candle-desgined.png" alt="Designer Collection" loading="lazy">
+                        </div>
+                        <div class="collection-content">
+                            <h3>Designer Collection</h3>
+                            <p>Artistic designs created by our talented beneficiaries.</p>
+                            <div class="collection-stats">
+                                <span><%= products.filter(p => p.category === 'designer').length %> Products</span>
+                                <span>From ₹549</span>
+                            </div>
+                            <a href="#designer" class="btn btn-outline">Explore Collection</a>
+                        </div>
+                    </div>
+
+                    <!-- Sets Collection -->
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="/src/images/shop/candles/3set-white-candle.png" alt="Sets Collection" loading="lazy">
+                        </div>
+                        <div class="collection-content">
+                            <h3>Sets Collection</h3>
+                            <p>Carefully curated sets perfect for gifts or home decoration.</p>
+                            <div class="collection-stats">
+                                <span><%= products.filter(p => p.category === 'sets').length %> Products</span>
+                                <span>From ₹899</span>
+                            </div>
+                            <a href="#sets" class="btn btn-outline">Explore Collection</a>
+                        </div>
+                    </div>
+
+                    <!-- New Arrivals -->
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="/src/images/shop/candles/new-candle (1).jpg" alt="New Arrivals" loading="lazy">
+                        </div>
+                        <div class="collection-content">
+                            <h3>New Arrivals</h3>
+                            <p>Latest additions to our candle family, fresh from our workshop.</p>
+                            <div class="collection-stats">
+                                <span><%= products.filter(p => p.id >= 15).length %> Products</span>
+                                <span>From ₹349</span>
+                            </div>
+                            <a href="#new" class="btn btn-primary">Explore Collection</a>
+                        </div>
+                    </div>
+
+                    <!-- Special Occasions -->
+                    <div class="collection-card">
+                        <div class="collection-image">
+                            <img src="/src/images/shop/candles/new-candle (6).jpg" alt="Special Occasions" loading="lazy">
+                        </div>
+                        <div class="collection-content">
+                            <h3>Special Occasions</h3>
+                            <p>Perfect candles for celebrations, festivals, and memorable moments.</p>
+                            <div class="collection-stats">
+                                <span><%= products.filter(p => p.category === 'festive').length %> Products</span>
+                                <span>From ₹429</span>
+                            </div>
+                            <a href="#occasions" class="btn btn-outline">Explore Collection</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products by Collection -->
+        <% 
+        const collections = [
+            { id: 'classic', name: 'Classic Collection', category: 'classic' },
+            { id: 'luxury', name: 'Luxury Collection', category: 'luxury' },
+            { id: 'designer', name: 'Designer Collection', category: 'designer' },
+            { id: 'sets', name: 'Sets Collection', category: 'sets' },
+            { id: 'new', name: 'New Arrivals', filter: p => p.id >= 15 },
+            { id: 'occasions', name: 'Special Occasions', category: 'festive' }
+        ];
+        %>
+
+        <% collections.forEach(collection => { %>
+            <% 
+            let collectionProducts;
+            if (collection.filter) {
+                collectionProducts = products.filter(collection.filter);
+            } else {
+                collectionProducts = products.filter(p => p.category === collection.category);
+            }
+            %>
+            <% if (collectionProducts.length > 0) { %>
+                <section class="collection-products" id="<%= collection.id %>">
+                    <div class="container">
+                        <div class="section-header">
+                            <h2><%= collection.name %></h2>
+                            <p><%= collectionProducts.length %> handcrafted products</p>
+                        </div>
+                        
+                        <div class="products-grid">
+                            <% collectionProducts.forEach(product => { %>
+                                <%- include('../components/candle-card', { product: product }) %>
+                            <% }) %>
+                        </div>
+                    </div>
+                </section>
+            <% } %>
+        <% }) %>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+</body>
+</html>
