@@ -2,6 +2,7 @@
 
 <!-- Add CSS Links -->
 <link rel="stylesheet" href="./css/landing.css">
+<link rel="stylesheet" href="./css/aos-fixes.css">
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -243,7 +244,7 @@
             }) %>
             
             <%- include('components/team-card', {
-                image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                image: '/src/images/founder/sangita-mehra-1.webp',
                 name: 'Raj Patel',
                 role: 'Head of Programs',
                 bio: 'Educational expert ensuring quality implementation across all initiatives.',
@@ -255,7 +256,7 @@
             }) %>
             
             <%- include('components/team-card', {
-                image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+                image: '/src/images/founder/sangita-mehra-2.webp',
                 name: 'Meera Gupta',
                 role: 'Community Outreach Lead',
                 bio: 'Building bridges between communities and sustainable development.',
@@ -280,7 +281,7 @@
         <div class="transformation-grid">
             <%- include('components/transformation-card', {
                 type: 'image',
-                media: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                media: '/src/images/education/16 years ago, I pledged to help reduce illiteracy and to stay committed to educating street chil.webp',
                 title: 'From Streets to Classrooms',
                 caption: 'Providing safe learning environments for vulnerable children',
                 delay: 100
@@ -289,7 +290,7 @@
             <%- include('components/transformation-card', {
                 type: 'video',
                 media: '/src/videos/summer-camp.mp4',
-                poster: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                poster: '/src/images/tranformation/Shabila\'s story is one of Divine Grace and one that epitomizes miracles. . We first met Shabila .webp',
                 title: 'Skill Development Programs',
                 caption: 'Vocational training that creates sustainable futures',
                 delay: 200
@@ -297,7 +298,7 @@
             
             <%- include('components/transformation-card', {
                 type: 'image',
-                media: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                media: '/src/images/tranformation/Our mantra! Believe in yourself, you are braver than you think,more talented than you know, and .webp',
                 title: 'Community Support',
                 caption: 'Building strong foundations through family engagement',
                 delay: 300
@@ -306,7 +307,7 @@
             <%- include('components/transformation-card', {
                 type: 'video',
                 media: '/src/videos/sangeeta-mehara-and-mla-anilshamra-bjp.mp4',
-                poster: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                poster: '/src/images/tranformation/Today I chanced upon this old photograph at the center ... .Nothing more satisfying, than this v.webp',
                 title: 'Health & Nutrition',
                 caption: 'Comprehensive care for holistic development',
                 delay: 400
@@ -328,7 +329,7 @@
                 <%- include('components/reel-card', {
                     type: 'video',
                     media: '/src/videos/landingpage/landing-page.mp4',
-                    poster: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+                    poster: '/src/images/tranformation/16 years ago, I pledged to help reduce illiteracy and to stay committed to educating street chil.webp',
                     caption: 'From street child to college graduate - Priya\'s inspiring journey',
                     likes: 234,
                     timeAgo: '2d'
@@ -336,7 +337,7 @@
                 
                 <%- include('components/reel-card', {
                     type: 'image',
-                    media: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+                    media: '/src/images/tranformation/Our mantra! Believe in yourself, you are braver than you think,more talented than you know, and .webp',
                     caption: 'Women empowerment workshop - 12 new entrepreneurs born today!',
                     likes: 187,
                     timeAgo: '1w'
@@ -345,7 +346,7 @@
                 <%- include('components/reel-card', {
                     type: 'video',
                     media: '/src/videos/summer-camp.mp4',
-                    poster: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+                    poster: '/src/images/tranformation/Today I chanced upon this old photograph at the center ... .Nothing more satisfying, than this v (1).webp',
                     caption: 'Free health camp reaching 150+ families in Delhi',
                     likes: 156,
                     timeAgo: '2w'
@@ -353,7 +354,7 @@
                 
                 <%- include('components/reel-card', {
                     type: 'image',
-                    media: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+                    media: '/src/images/education/16 years ago, I pledged to help reduce illiteracy and to stay committed to educating street chil (2).webp',
                     caption: 'New library opening at our Munirka center! 📚',
                     likes: 298,
                     timeAgo: '3w'
@@ -362,7 +363,7 @@
                 <%- include('components/reel-card', {
                     type: 'video',
                     media: '/src/videos/sangeeta-mehara-and-mla-anilshamra-bjp.mp4',
-                    poster: 'https://images.unsplash.com/photo-1503914108261-d8ac82d9b4a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80',
+                    poster: '/src/images/tranformation/Shabila\'s story is one of Divine Grace and one that epitomizes miracles. . We first met Shabila .webp',
                     caption: 'Children celebrating their first graduation ceremony',
                     likes: 445,
                     timeAgo: '1m'
@@ -402,21 +403,21 @@
                     quote: 'Spread A Smile India gave me hope when I had none. Today, I\'m pursuing my engineering degree and dreaming of giving back to my community.',
                     author: 'Priya Sharma',
                     role: 'Former Street Child, Now Engineering Student',
-                    image: 'https://images.unsplash.com/photo-1494790108755-2616c739c3c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+                    image: '/src/images/founder/sangita-mehra-3.webp'
                 }) %>
                 
                 <%- include('components/testimonial-card', {
                     quote: 'The vocational training program didn\'t just teach me skills—it gave me independence and dignity. I now run my own tailoring business.',
                     author: 'Sunita Devi',
                     role: 'Empowerment Program Graduate',
-                    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+                    image: '/src/images/team/sangita-mehra.webp'
                 }) %>
                 
                 <%- include('components/testimonial-card', {
                     quote: 'This organization doesn\'t just educate children—they transform entire families. My three children are now in school because of their support.',
                     author: 'Ramesh Kumar',
                     role: 'Parent & Community Member',
-                    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80'
+                    image: '/src/images/founder/sangita-mehra-1.webp'
                 }) %>
             </div>
             
@@ -476,11 +477,26 @@
 <!-- JavaScript -->
 <script src="/js/landing.js"></script>
 <script>
-    // Initialize AOS
+    // Prevent scroll conflicts during AOS animations
+    document.addEventListener('DOMContentLoaded', function() {
+        // Ensure body scroll is not blocked
+        document.body.style.overflowX = 'hidden';
+        document.body.style.overflowY = 'auto';
+        
+        // Prevent horizontal scrollbars
+        document.documentElement.style.overflowX = 'hidden';
+        
+        // Fix for touch devices
+        document.body.style.webkitOverflowScrolling = 'touch';
+    });
+    
+    // Initialize AOS with optimized settings
     AOS.init({
         duration: 800,
         easing: 'ease-out-cubic',
         once: true,
-        offset: 100
+        offset: 100,
+        disable: 'mobile', // Disable on mobile to prevent scroll issues
+        anchorPlacement: 'top-bottom'
     });
 </script>

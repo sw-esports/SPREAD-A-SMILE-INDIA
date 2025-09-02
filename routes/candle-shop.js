@@ -178,7 +178,7 @@ const candleProducts = [
         originalPrice: 699,
         description: "Handcrafted artisan candle with beautiful aurora-inspired design and premium fragrance.",
         category: "artisan",
-        images: ["new-candle (1).jpg"],
+        images: ["new-candle-1.jpg"],
         inStock: 8,
         featured: true,
         tags: ["artisan", "premium", "aurora"]
@@ -190,7 +190,7 @@ const candleProducts = [
         originalPrice: 599,
         description: "Classic vintage-style candle with traditional craftsmanship and timeless appeal.",
         category: "vintage",
-        images: ["new-candle (2).jpg"],
+        images: ["new-candle-2.jpg"],
         inStock: 12,
         featured: false,
         tags: ["vintage", "heritage", "classic"]
@@ -202,7 +202,7 @@ const candleProducts = [
         originalPrice: 519,
         description: "Contemporary minimalist design perfect for modern homes and offices.",
         category: "modern",
-        images: ["new-candle (3).jpg"],
+        images: ["new-candle-3.jpg"],
         inStock: 18,
         featured: true,
         tags: ["modern", "minimalist", "contemporary"]
@@ -214,7 +214,7 @@ const candleProducts = [
         originalPrice: 799,
         description: "Premium luxury candle with exotic fragrance blend and elegant presentation.",
         category: "luxury",
-        images: ["new-candle (4).jpg"],
+        images: ["new-candle-4.jpg"],
         inStock: 6,
         featured: true,
         tags: ["luxury", "scented", "exotic"]
@@ -226,7 +226,7 @@ const candleProducts = [
         originalPrice: 449,
         description: "Nature-inspired candle with botanical elements and fresh garden scents.",
         category: "botanical",
-        images: ["new-candle (5).jpg"],
+        images: ["new-candle-5.jpg"],
         inStock: 14,
         featured: false,
         tags: ["botanical", "nature", "garden"]
@@ -238,7 +238,7 @@ const candleProducts = [
         originalPrice: 559,
         description: "Perfect for celebrations and special occasions with vibrant colors and festive design.",
         category: "festive",
-        images: ["new-candle (6).jpg"],
+        images: ["new-candle-6.jpg"],
         inStock: 10,
         featured: true,
         tags: ["festive", "celebration", "vibrant"]
@@ -250,7 +250,7 @@ const candleProducts = [
         originalPrice: 489,
         description: "Calming meditation candle designed for mindfulness and relaxation practices.",
         category: "meditation",
-        images: ["new-candle (7).jpg"],
+        images: ["new-candle-7.jpg"],
         inStock: 16,
         featured: true,
         tags: ["zen", "meditation", "calming"]
@@ -265,6 +265,7 @@ router.get('/', (req, res) => {
         theme: req.session.theme || 'light',
         products: candleProducts,
         featuredProducts: candleProducts.filter(p => p.featured),
+        trendingProducts: candleProducts.filter(p => p.featured || p.inStock < 10).slice(0, 8),
         metaDescription: 'Shop handcrafted candles made by SASI beneficiaries. Every purchase supports our mission to transform lives.',
         currentPath: '/candle-shop'
     });

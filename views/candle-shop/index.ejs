@@ -8,25 +8,14 @@
     <!-- SEO Meta Tags -->
     <meta name="description" content="<%= metaDescription %>">
     <meta name="keywords" content="handcrafted candles, artisan candles, NGO products, charity shop, scented candles, natural candles">
-    <meta name="author"                                <button class="like-btn" onclick="toggleVideoLike(4)" aria-label="Like this video">
-                                    <i class="far fa-heart"></i>
-                                    <span class="like-count">15</span>
-                                </button>
-                                <button class="share-btn" onclick="shareVideo(4)" aria-label="Share this video">
-                                    <i class="fas fa-share"></i>
-                                </button>t="Spread A Smile India">
-    <meta name="robots" content="inde                                            <button class="quick-view-btn" onclick="openQuickView('<%= product.id %>')" aria-label="Quick view product">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button class="wishlist-btn" onclick="toggleWishlist('<%= product.id %>')" aria-label="Add to wishlist">
-                                                <i class="fas fa-heart"></i>
-                                            </button>low">
+    <meta name="author" content="Spread A Smile India">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://spreadasmileindia.org<%= currentPath %>">
     
     <!-- Open Graph Tags -->
     <meta property="og:title" content="<%= title %>">
     <meta property="og:description" content="<%= metaDescription %>">
-    <meta property="og:image" content="https://spreadasmileindia.org/src/images/candle-shop-og.jpg">
+    <meta property="og:image" content="/src/images/shop/candles/new-candle-1.webp">
     <meta property="og:url" content="https://spreadasmileindia.org<%= currentPath %>">
     <meta property="og:type" content="website">
     
@@ -57,7 +46,7 @@
     
     <!-- Product Data for JavaScript -->
     <script>
-        window.candleProducts = <%-JSON.stringify(products)%>;
+    window.candleProducts = <%= JSON.stringify(products) %>;
     </script>
     
     <!-- Theme Initialization -->
@@ -327,16 +316,6 @@
                 </div>
                 
                 <div class="trending-grid">
-                    <% 
-                    // Filter products to show trending ones (prioritize new products)
-                    const trendingProducts = products.filter(product => 
-                        product.id >= 15 // New candles (IDs 15-21)
-                    ).concat(
-                        products.filter(product => 
-                            product.id < 15 && product.featured && product.price > 400 // High-value featured products
-                        )
-                    ).slice(0, 8);
-                    %>
                     <% trendingProducts.forEach(product => { %>
                         <%- include('../components/candle-card', { product: product }) %>
                     <% }) %>

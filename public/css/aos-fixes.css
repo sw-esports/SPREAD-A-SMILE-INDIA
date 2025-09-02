@@ -1,0 +1,207 @@
+/* ===== AOS ANIMATION OVERFLOW FIXES ===== */
+
+/* Prevent scrollbars during AOS animations */
+html {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+}
+
+body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    max-width: 100vw;
+    position: relative;
+}
+
+/* Prevent sections from showing scrollbars during animations */
+section {
+    overflow-x: hidden !important;
+    overflow-y: visible;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Container fixes */
+.container {
+    overflow: visible !important;
+    position: relative;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Specific fixes for animated elements */
+[data-aos] {
+    overflow: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+[data-aos="fade-up"],
+[data-aos="fade-down"],
+[data-aos="fade-left"],
+[data-aos="fade-right"] {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+/* Grid fixes */
+.impact-grid,
+.team-grid,
+.transformation-grid {
+    overflow: visible !important;
+    max-width: 100%;
+}
+
+/* Row and column fixes */
+.row {
+    overflow: visible !important;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col-md-6,
+.col-lg-4,
+.col-lg-6,
+.col-lg-8,
+.col-lg-12,
+.col-sm-6,
+.col-12 {
+    overflow: visible !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Feeds section specific fixes */
+.feeds-container {
+    overflow: hidden !important;
+    position: relative;
+    max-width: 100%;
+}
+
+.feeds-scroll {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    max-width: 100%;
+}
+
+.feeds-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* Testimonials slider fixes */
+.testimonials-slider {
+    overflow: hidden !important;
+    max-width: 100%;
+}
+
+.testimonial-track {
+    overflow: visible !important;
+    max-width: 100%;
+}
+
+/* Prevent pointer events during animation to avoid scroll conflicts */
+.aos-animate {
+    pointer-events: auto !important;
+}
+
+[data-aos]:not(.aos-animate) {
+    pointer-events: none !important;
+}
+
+/* Newsletter section fix */
+.newsletter-section {
+    overflow-x: hidden !important;
+    max-width: 100%;
+}
+
+/* Carousel container fix */
+.carousel-container {
+    overflow: hidden !important;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Hero carousel fix */
+.hero-carousel {
+    overflow: hidden !important;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Ensure main page scrolling is not interrupted */
+main {
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+    max-width: 100%;
+}
+
+/* Fix for modal/overlay elements that might interfere */
+.loading-screen {
+    overflow: hidden !important;
+    max-width: 100%;
+}
+
+/* Card component fixes */
+.card {
+    overflow: visible !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.card-body {
+    overflow: visible !important;
+    max-width: 100%;
+}
+
+/* Button and link fixes */
+.btn {
+    overflow: hidden !important;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Image fixes */
+img {
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+/* Media query for mobile optimization */
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden !important;
+        position: relative;
+    }
+    
+    .container {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        max-width: 100% !important;
+    }
+    
+    [data-aos] {
+        transform: none !important;
+        opacity: 1 !important;
+    }
+    
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .col-md-6,
+    .col-lg-4,
+    .col-lg-6,
+    .col-lg-8,
+    .col-lg-12,
+    .col-sm-6,
+    .col-12 {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+}

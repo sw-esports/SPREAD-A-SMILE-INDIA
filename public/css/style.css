@@ -1031,3 +1031,31 @@ a.social-link.youtube:hover {
     padding-top: 80px;
   }
 }
+
+/* ===== GLOBAL OVERFLOW FIXES ===== */
+/* Prevent horizontal scrollbars on the main page */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Ensure containers don't cause scroll issues */
+.container {
+  overflow: visible;
+  max-width: 100%;
+}
+
+/* Fix for sections during animations */
+section {
+  overflow-x: hidden;
+}
+
+/* Prevent scrollbar flickering during page transitions */
+* {
+  box-sizing: border-box;
+}

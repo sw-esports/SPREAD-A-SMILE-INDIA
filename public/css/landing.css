@@ -9,6 +9,39 @@
     box-sizing: border-box;
 }
 
+/* Prevent unwanted scrollbars during animations */
+html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Prevent containers from showing scrollbars during AOS animations */
+section {
+    overflow: hidden;
+}
+
+.container {
+    overflow: visible;
+}
+
+/* Hide scrollbars but allow scrolling for specific components */
+.feeds-scroll,
+.testimonials-slider,
+.carousel-container {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.feeds-scroll::-webkit-scrollbar,
+.testimonials-slider::-webkit-scrollbar,
+.carousel-container::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
 /* CSS Variables for Theme */
 :root {
     /* Light Theme Colors */
@@ -162,6 +195,8 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
+    transform: translateZ(0);
 }
 
 .btn-primary {
@@ -202,6 +237,9 @@ h1, h2, h3, h4, h5, h6 {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left var(--transition-slow);
+    border-radius: 50px;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .btn:hover::before {
@@ -2138,4 +2176,65 @@ textarea:focus {
         font-size: 0.9rem;
         padding: 0.7rem 0.9rem;
     }
+}
+
+/* ===== AOS ANIMATION FIXES ===== */
+/* Prevent scrollbars during AOS animations */
+[data-aos] {
+    pointer-events: none;
+}
+
+[data-aos].aos-animate {
+    pointer-events: auto;
+}
+
+/* Ensure sections don't overflow during animations */
+.impact-section,
+.about-section,
+.team-section,
+.transformation-section,
+.feeds-section,
+.testimonials-section,
+.newsletter-section {
+    overflow-x: hidden;
+}
+
+/* Fix for transformation grid animations */
+.transformation-grid {
+    overflow: hidden;
+}
+
+/* Fix for feeds container */
+.feeds-container {
+    overflow: hidden;
+}
+
+.feeds-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+/* Fix for testimonials slider */
+.testimonials-slider {
+    overflow: hidden;
+}
+
+.testimonial-track {
+    overflow: visible;
+}
+
+/* Prevent body scroll when interacting with horizontal scrollers */
+.feeds-scroll:hover,
+.testimonials-slider:hover {
+    overflow-x: auto;
+}
+
+/* Ensure main page scroll is not interrupted */
+html, body {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-y: auto;
 }
